@@ -4,21 +4,7 @@ import { actionClasses } from '../actions';
 import { mockClasses } from '../mocks';
 import { pageClasses } from '../page-objects/pages';
 
-type Pages = {
-    [K in keyof typeof pageClasses]: InstanceType<(typeof pageClasses)[K]>;
-};
-
-type Actions = {
-    [K in keyof typeof actionClasses]: InstanceType<(typeof actionClasses)[K]>;
-};
-
-type Mocker = InstanceType<typeof mockClasses.mocker>;
-
-type MyFixtures = {
-    pages: Pages;
-    actions: Actions;
-    mocker: Mocker;
-};
+import { type MyFixtures } from './types';
 
 const test = base
     .extend<{ _cleanLocalStorage: void; _fixTime: void }>({
@@ -46,11 +32,11 @@ const test = base
             };
             await use(pages);
         },
-        actions: async ({ page }, use) => {
+        actions: async ({ page, pages }, use) => {
             const actions = {
-                home: new actionClasses.home(page),
-                generate: new actionClasses.generate(page),
-                history: new actionClasses.history(page),
+                home: new actionClasses.home(page, pages),
+                generate: new actionClasses.generate(page, pages),
+                history: new actionClasses.history(page, pages),
             };
             await use(actions);
         },

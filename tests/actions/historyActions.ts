@@ -1,16 +1,16 @@
 import { type Page } from '@playwright/test';
 
-import { HistoryPage } from '../page-objects/pages/historyPage';
+import { type Pages } from '../support/types';
 
 const STORAGE_KEY = 'tableHistory';
 
 export class HistoryActions {
     readonly page: Page;
-    readonly historyPage: HistoryPage;
+    readonly pages: Pages;
 
-    constructor(page: Page) {
+    constructor(page: Page, pages: Pages) {
         this.page = page;
-        this.historyPage = new HistoryPage(page);
+        this.pages = pages;
     }
 
     public async goto() {
@@ -33,23 +33,23 @@ export class HistoryActions {
     }
 
     public async openHistoryItem(name: string) {
-        const item = this.historyPage.getHistoryItemByName(name);
+        const item = this.pages.history.getHistoryItemByName(name);
 
         await item.click();
     }
 
     public async deleteHistoryItem(name: string) {
-        const item = this.historyPage.getHistoryItemByName(name);
-        const deleteButton = this.historyPage.getDeleteButtonFromItem(item);
+        const item = this.pages.history.getHistoryItemByName(name);
+        const deleteButton = this.pages.history.getDeleteButtonFromItem(item);
 
         await deleteButton.click();
     }
 
     public async clearHistory() {
-        await this.historyPage.clearHistoryButton.click();
+        await this.pages.history.clearHistoryButton.click();
     }
 
     public async closeModal() {
-        await this.historyPage.historyModal.closeButton.click();
+        await this.pages.history.historyModal.closeButton.click();
     }
 }

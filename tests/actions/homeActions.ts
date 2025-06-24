@@ -2,15 +2,15 @@ import * as fs from 'fs/promises';
 
 import { type Page } from '@playwright/test';
 
-import { HomePage } from '../page-objects/pages/homePage';
+import { type Pages } from '../support/types';
 
 export class HomeActions {
     readonly page: Page;
-    readonly homePage: HomePage;
+    readonly pages: Pages;
 
-    constructor(page: Page) {
+    constructor(page: Page, pages: Pages) {
         this.page = page;
-        this.homePage = new HomePage(page);
+        this.pages = pages;
     }
 
     public async goto() {
@@ -19,14 +19,14 @@ export class HomeActions {
 
     public async uploadFile(filePath: string) {
         const fileChooserPromise = this.page.waitForEvent('filechooser');
-        await this.homePage.dropzone.click();
+        await this.pages.home.dropzone.click();
         const fileChooser = await fileChooserPromise;
         await fileChooser.setFiles(filePath);
     }
 
     public async uploadFileWithDragAndDrop(filePath: string, fileName: string) {
         const buffer = await fs.readFile(filePath);
-        await this.homePage.dropzone.dispatchEvent('dragenter');
+        await this.pages.home.dropzone.dispatchEvent('dragenter');
         const dataTransfer = await this.page.evaluateHandle(
             ({ buffer, fileName, fileType }) => {
                 const dt = new DataTransfer();
@@ -41,14 +41,14 @@ export class HomeActions {
             }
         );
 
-        await this.homePage.dropzone.dispatchEvent('drop', { dataTransfer });
+        await this.pages.home.dropzone.dispatchEvent('drop', { dataTransfer });
     }
 
     public async send() {
-        await this.homePage.sendButton.click();
+        await this.pages.home.sendButton.click();
     }
 
     public async clearFile() {
-        await this.homePage.dropzoneClearButton.click();
+        await this.pages.home.dropzoneClearButton.click();
     }
 }

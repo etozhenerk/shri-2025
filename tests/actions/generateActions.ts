@@ -1,14 +1,14 @@
 import { type Page } from '@playwright/test';
 
-import { GeneratePage } from '../page-objects/pages/generatePage';
+import { type Pages } from '../support/types';
 
 export class GenerateActions {
     readonly page: Page;
-    readonly generatePage: GeneratePage;
+    readonly pages: Pages;
 
-    constructor(page: Page) {
+    constructor(page: Page, pages: Pages) {
         this.page = page;
-        this.generatePage = new GeneratePage(page);
+        this.pages = pages;
     }
 
     public async goto() {
@@ -16,6 +16,6 @@ export class GenerateActions {
     }
 
     public async startGeneration() {
-        await this.generatePage.generateButton.click();
+        await this.pages.generate.generateButton.click();
     }
 } 
