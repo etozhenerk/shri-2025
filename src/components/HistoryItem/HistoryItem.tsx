@@ -38,7 +38,7 @@ export const HistoryItem: FC<Props> = ({ item, onClick, onDelete }) => {
     };
 
     return (
-        <div className={styles.root} data-testid={'history-item'}>
+        <div className={styles.root} data-testid="history-item">
             <Button
                 type="button"
                 variant="secondary"
