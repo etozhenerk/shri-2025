@@ -18,9 +18,12 @@ export const FileDisplay: FC<Props> = ({ fileName, onClear, isCompleted, isProce
     return (
         <div className={styles.fileControls}>
             <div className={styles.fileInfo}>
-                <Typography className={cn(styles.fileName, {
-                    [styles.fileNameCompleted]: isCompleted
-                })}>
+                <Typography
+                    className={cn(styles.fileName, {
+                        [styles.fileNameCompleted]: isCompleted,
+                    })}
+                    data-testid="dropzone-file-name"
+                >
                     {fileName}
                 </Typography>
             </div>
@@ -30,6 +33,7 @@ export const FileDisplay: FC<Props> = ({ fileName, onClear, isCompleted, isProce
                 className={cn(styles.clearFileButton, styles.customBorder)}
                 onClick={onClear}
                 disabled={isProcessing}
+                data-testid="dropzone-clear-button"
             >
                 <Clear size={22} />
             </Button>

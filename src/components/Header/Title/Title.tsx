@@ -7,7 +7,7 @@ export const Title = () => {
     return (
         <div className={styles.root}>
             <Logo />
-            <Typography className={styles.title} weight="medium" as="h1">
+            <Typography className={styles.title} weight="medium" as="h1" data-testid="title">
                 Межгалактическая аналитика
             </Typography>
         </div>

@@ -34,7 +34,7 @@ export const HistoryList = () => {
     };
 
     return (
-        <div className={styles.list}>
+        <div className={styles.list} data-testid="history-list">
             {history.map((item) => (
                 <HistoryItem key={item.id} item={item} onClick={handleItemClick} onDelete={handleDeleteItem} />
             ))}

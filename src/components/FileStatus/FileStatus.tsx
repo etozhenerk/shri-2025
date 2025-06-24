@@ -12,8 +12,10 @@ type Props = {
     isActive: boolean;
 };
 export const FileStatus: FC<Props> = ({ type, isActive }) => {
+    const dataTestId = type === 'success' ? 'file-status-success' : 'file-status-error';
+
     return (
-        <span className={cn(styles.root, { [styles.active]: isActive })}>
+        <span className={cn(styles.root, { [styles.active]: isActive })} data-testid={dataTestId}>
             {type === 'success' ? (
                 <>
                     <Typography>Обработан успешно</Typography>
@@ -27,4 +29,4 @@ export const FileStatus: FC<Props> = ({ type, isActive }) => {
             )}
         </span>
     );
-}; 
+};

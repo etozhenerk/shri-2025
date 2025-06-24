@@ -1,1 +1,1 @@
-export { FileStatus } from './FileStatus'; 
+export { FileStatus } from './FileStatus';

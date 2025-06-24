@@ -50,7 +50,7 @@ export const HomePage = () => {
     };
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container} data-testid="home-page">
             <Typography as="h1" size="m" className={styles.title}>
                 Загрузите <b>csv</b> файл и <b>получите полную</b> информацию о нём за сверхнизкое время
             </Typography>

@@ -16,14 +16,14 @@ type Props = {
 export const HighlightsSection: FC<Props> = ({ highlights }) => {
     if (highlights.length === 0) {
         return (
-            <Typography size="l" className={styles.highlightsPlaceholder}>
+            <Typography size="l" className={styles.highlightsPlaceholder} data-testid="highlights-placeholder">
                 Здесь появятся хайлайты
             </Typography>
         );
     }
 
     return (
-        <div className={styles.highlightsGrid}>
+        <div className={styles.highlightsGrid} data-testid="highlights-grid">
             {highlights.map((highlight: AnalysisHighlight, index: number) => (
                 <HighlightCard key={index} highlight={highlight} />
             ))}

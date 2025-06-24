@@ -72,12 +72,13 @@ export const GeneratePage = () => {
     }, [successMessage]);
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container} data-testid="generate-page">
             <Typography as="h1" size="m" className={styles.title}>
                 Сгенерируйте готовый csv-файл нажатием одной кнопки
             </Typography>
 
             <Button
+                data-testid="generate-button"
                 type="button"
                 variant="primary"
                 disabled={isGenerating}
@@ -90,12 +91,12 @@ export const GeneratePage = () => {
             </Button>
 
             {successMessage && (
-                <Typography as="p" size="s">
+                <Typography as="p" size="s" data-testid="generate-success-message">
                     {successMessage}
                 </Typography>
             )}
             {error && (
-                <Typography as="p" size="s" color="error">
+                <Typography as="p" size="s" color="error" data-testid="generate-error-message">
                     {error}
                 </Typography>
             )}

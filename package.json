@@ -9,7 +9,12 @@
     "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint . --fix && prettier --write \"src/**/*.{ts,tsx,css}\"",
     "preview": "vite preview",
-    "format": "prettier --write \"src/**/*.{ts,tsx,css}\""
+    "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
+    "test": "playwright test",
+    "test:flaky": "scripts/flaky-test-run.sh",
+    "test:flaky:all": "scripts/flaky-test-run-all.sh",
+    "test:ui": "playwright test --ui",
+    "test:debug": "playwright test --debug"
   },
   "dependencies": {
     "classnames": "^2.5.1",
@@ -20,6 +25,8 @@
   },
   "devDependencies": {
     "@redux-devtools/extension": "^3.3.0",
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^22.15.30",
     "@types/react": "^18.2.64",
     "@types/react-dom": "^18.2.21",
     "@vitejs/plugin-react": "^4.2.1",

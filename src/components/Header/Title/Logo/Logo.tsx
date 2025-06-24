@@ -1,5 +1,5 @@
 export const Logo = () => (
-    <svg width="268" height="60" viewBox="0 0 268 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="268" height="60" viewBox="0 0 268 60" fill="none" xmlns="http://www.w3.org/2000/svg" data-testid="logo">
         <path
             d="M161.367 36.5217L167.985 26.4985H161.781L154.942 36.8545V26.4985H149.469V47.7826H154.942V37.7766H157.131L161.781 47.7826H167.985L162.753 36.5217H161.367Z"
             fill="#FF5F00"

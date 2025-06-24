@@ -7,7 +7,7 @@ import styles from './HistoryPage.module.css';
 
 export const HistoryPage = () => {
     return (
-        <div className={styles.container}>
+        <div className={styles.container} data-testid="history-page">
             <HistoryList />
             <div className={styles.actions}>
                 <GenerateMoreButton />

@@ -1,5 +1,6 @@
 import React, { FC, PropsWithChildren } from 'react';
 
+import { WithTestId } from '@app-types/testing';
 import { Button } from '@ui/Button';
 import { Cross } from '@ui/icons/Cross';
 import cn from 'classnames';
@@ -8,12 +9,12 @@ import { Portal } from '../Portal';
 
 import styles from './Modal.module.css';
 
-type Props = PropsWithChildren & {
+type Props = PropsWithChildren & WithTestId & {
     isOpen: boolean;
     onClose?: () => void;
-};
+}
 
-export const Modal: FC<Props> = ({ isOpen, children, onClose }) => {
+export const Modal: FC<Props> = ({ isOpen, children, onClose, 'data-testid': testId }) => {
     const handleBackdropClick = (e: React.MouseEvent) => {
         if (e.target === e.currentTarget && onClose) {
             onClose();
@@ -31,10 +32,16 @@ export const Modal: FC<Props> = ({ isOpen, children, onClose }) => {
                     [styles.backdropShown]: isOpen,
                 })}
                 onClick={handleBackdropClick}
+                data-testid="modal-backdrop"
             >
-                <div className={styles.modal} onClick={handleModalClick}>
+                <div className={styles.modal} onClick={handleModalClick} data-testid={testId ? `${testId}` : 'modal'}>
                     {onClose && (
-                        <Button variant="clear" className={styles.closeButton} onClick={onClose}>
+                        <Button
+                            variant="clear"
+                            className={styles.closeButton}
+                            onClick={onClose}
+                            data-testid="modal-close-button"
+                        >
                             <Cross size={32} />
                         </Button>
                     )}

@@ -113,7 +113,7 @@ export const Dropzone: FC<Props> = ({ file, status, error, onFileSelect, onClear
     const renderContent = () => {
         if (isProcessing) {
             return (
-                <div className={styles.fileProcessing}>
+                <div className={styles.fileProcessing} data-testid="dropzone-loader">
                     <Loader />
                 </div>
             );
@@ -144,7 +144,11 @@ export const Dropzone: FC<Props> = ({ file, status, error, onFileSelect, onClear
 
     const renderStatusText = () => {
         if (validationError) {
-            return <Typography color="error">{validationError}</Typography>;
+            return (
+                <Typography color="error" data-testid="dropzone-error">
+                    {validationError}
+                </Typography>
+            );
         }
         if (isProcessing) {
             return 'идёт парсинг файла';
@@ -153,7 +157,11 @@ export const Dropzone: FC<Props> = ({ file, status, error, onFileSelect, onClear
             return 'готово!';
         }
         if (error) {
-            return <Typography color="error">{error}</Typography>;
+            return (
+                <Typography color="error" data-testid="dropzone-error">
+                    {error}
+                </Typography>
+            );
         }
         if (file) {
             return 'файл загружен!';
@@ -177,12 +185,13 @@ export const Dropzone: FC<Props> = ({ file, status, error, onFileSelect, onClear
             onClick={handleZoneClick}
             role="button"
             tabIndex={0}
+            data-testid="dropzone"
         >
             <input type="file" accept=".csv" ref={inputRef} onChange={handleInputChange} hidden />
-
-            {renderContent()}
-
-            <Typography size="l">{renderStatusText()}</Typography>
+            <div data-testid="dropzone-content">{renderContent()}</div>
+            <Typography size="l" data-testid="dropzone-status">
+                {renderStatusText()}
+            </Typography>
         </div>
     );
 };

@@ -1,12 +1,13 @@
 import { PropsWithChildren } from 'react';
 
 import { WithClassName } from '@app-types/common';
+import { WithTestId } from '@app-types/testing';
 import cn from 'classnames';
 
 import styles from './Typography.module.css';
 
 type Props = PropsWithChildren &
-    WithClassName & {
+    WithClassName & WithTestId & {
         color?: 'dark' | 'light' | 'purple' | 'error';
         size?: 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl';
         as?: 'span' | 'div' | 'p' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
@@ -24,6 +25,7 @@ export const Typography = ({
     children,
     maxRowsNumber,
     className,
+    'data-testid': testId,
 }: Props) => {
     const lineClampStyle = maxRowsNumber
         ? {
@@ -42,6 +44,7 @@ export const Typography = ({
                 { [styles.withLineClamp]: Boolean(maxRowsNumber) }
             )}
             style={{ ...lineClampStyle }}
+            data-testid={testId}
         >
             {children}
         </Component>
