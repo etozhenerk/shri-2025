@@ -11,7 +11,10 @@ type Props = {
 };
 
 /**
- * Компонент секции с хайлайтами результатов анализа
+ * Компонент секции с хайлайтами результатов обработки
+ *
+ * @param {IHighlight[]} highlights - Список хайлайтов
+ * @returns {JSX.Element}
  */
 export const HighlightsSection: FC<Props> = ({ highlights }) => {
     if (highlights.length === 0) {

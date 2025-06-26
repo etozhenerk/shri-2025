@@ -1,8 +1,8 @@
 import { HistoryItemType } from '@app-types/history';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 
-import { STORAGE_KEY } from './consts';
-import { getHistory, addToHistory, removeFromHistory, clearHistory } from './storage';
+import { STORAGE_KEY } from '../consts';
+import { getHistory, addToHistory, removeFromHistory, clearHistory } from '../storage';
 
 const MOCK_ITEM_BASE = { fileName: 'test.csv' };
 const MOCK_HISTORY_ITEM: HistoryItemType = {
@@ -108,4 +108,4 @@ describe('Утилиты для работы с localStorage', () => {
             expect(getHistory()).toEqual([]);
         });
     });
-}); 
+});

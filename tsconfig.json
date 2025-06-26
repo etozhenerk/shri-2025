@@ -13,6 +13,7 @@
         "isolatedModules": true,
         "noEmit": true,
         "jsx": "react-jsx",
+        "types": ["@testing-library/jest-dom"],
 
         /* Linting */
         "strict": true,
@@ -31,7 +32,8 @@
             "@hooks/*": ["src/hooks/*"],
             "@ui/*": ["src/ui/*"],
             "@constants/*": ["src/constants/*"],
-            "@app-types/*": ["src/types/*"]
+            "@app-types/*": ["src/types/*"],
+            "@tests/*": ["tests/*"]
         }
     },
     "include": ["src"],

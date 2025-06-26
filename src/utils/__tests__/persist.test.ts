@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 
-import { createPersistConfig } from './persist';
+import { createPersistConfig } from '../persist';
 
 describe('Утилита createPersistConfig', () => {
     it('должна создавать конфигурацию с правильным именем', () => {

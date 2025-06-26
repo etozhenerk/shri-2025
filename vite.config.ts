@@ -24,6 +24,7 @@ export default defineConfig(({ mode }) => {
                 '@ui': path.resolve(__dirname, './src/ui'),
                 '@app-types': path.resolve(__dirname, './src/types'),
                 '@constants': path.resolve(__dirname, './src/constants'),
+                '@tests': path.resolve(__dirname, './tests/'),
             },
         },
         plugins: [react()],

@@ -9,7 +9,11 @@ import { HighlightsSection } from './components/HighlightsSection';
 import styles from './HomePage.module.css';
 
 /**
- * Главная страница приложения для анализа CSV файлов
+ * @description
+ * Главная страница приложения для обработки CSV файлов
+ *
+ * @returns {JSX.Element}
+ * @constructor
  */
 export const HomePage = () => {
     const { file, status, highlights, error, setFile, setStatus, setHighlights, reset, setError } = useAnalysisStore();

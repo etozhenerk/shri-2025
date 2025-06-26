@@ -1,5 +1,8 @@
 import { type Page, type Route } from '@playwright/test';
 
+import { analysisErrorMock } from '../test-data/mocks/analysis-error';
+import { successAnalysisMock } from '../test-data/mocks/analysis-success';
+
 type MockResponse = Record<string, unknown> | string | number | unknown[];
 
 export class Mocker {
@@ -41,6 +44,14 @@ export class Mocker {
         });
 
         this.mockedRoutes.add(urlString);
+    }
+
+    public async mockAnalysisSuccess(options: { delay?: number } = {}) {
+        await this.mock('**/api/v1/analysis', successAnalysisMock, { ...options });
+    }
+
+    public async mockAnalysisError(options: { delay?: number } = {}) {
+        await this.mock('**/api/v1/analysis', analysisErrorMock, { ...options, status: 500 });
     }
 
     public async unmockAll() {

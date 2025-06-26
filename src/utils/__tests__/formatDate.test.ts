@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { formatDate } from './formatDate';
+import { formatDate } from '../formatDate';
 
 describe('Утилита formatDate', () => {
     it('должна форматировать дату, добавляя ведущие нули для дня и месяца', () => {

@@ -18,7 +18,7 @@ export const HistoryModal: FC = () => {
         }))
     );
 
-    if (!selectedItem?.highlights) {
+    if (!selectedItem?.highlights || !isOpenModal) {
         return null;
     }
 

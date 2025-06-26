@@ -187,7 +187,14 @@ export const Dropzone: FC<Props> = ({ file, status, error, onFileSelect, onClear
             tabIndex={0}
             data-testid="dropzone"
         >
-            <input type="file" accept=".csv" ref={inputRef} onChange={handleInputChange} hidden />
+            <input
+                type="file"
+                accept=".csv"
+                ref={inputRef}
+                onChange={handleInputChange}
+                hidden
+                data-testid="dropzone-input"
+            />
             <div data-testid="dropzone-content">{renderContent()}</div>
             <Typography size="l" data-testid="dropzone-status">
                 {renderStatusText()}
