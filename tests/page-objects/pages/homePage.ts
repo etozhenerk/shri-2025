@@ -16,7 +16,7 @@ export class HomePage extends BasePage {
     }
 
     public get fileDisplayName() {
-        return this.dropzone.getByTestId('file-display-name');
+        return this.dropzone.getByTestId('dropzone-file-name');
     }
 
     public get dropzoneContent() {
@@ -28,7 +28,7 @@ export class HomePage extends BasePage {
     }
 
     public get sendButton() {
-        return this.root.getByTestId('home-send-button');
+        return this.root.getByTestId('send-button');
     }
 
     public get highlightsGrid() {

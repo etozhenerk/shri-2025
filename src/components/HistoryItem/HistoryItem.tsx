@@ -5,7 +5,7 @@ import { Button } from '@ui/Button';
 import { File } from '@ui/icons/File';
 import { Trash } from '@ui/icons/Trash';
 import { Typography } from '@ui/Typography';
-import { formatDate } from '@utils/formateDate';
+import { formatDate } from '@utils/formatDate';
 import cn from 'classnames';
 
 import { FileStatus } from '../FileStatus';
