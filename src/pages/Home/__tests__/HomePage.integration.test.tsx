@@ -7,7 +7,12 @@ import { HomePage } from '../HomePage';
 describe('Интеграционные тесты для HomePage', () => {
     it('TC-HP-003: Попытка загрузки файла с неверным расширением', async () => {
         render(
-            <MemoryRouter>
+            <MemoryRouter
+                future={{
+                    v7_startTransition: true,
+                    v7_relativeSplatPath: true,
+                }}
+            >
                 <HomePage />
             </MemoryRouter>
         );
@@ -25,7 +30,12 @@ describe('Интеграционные тесты для HomePage', () => {
 
     it('TC-HP-004: Кнопка "Отправить" неактивна до выбора файла', async () => {
         render(
-            <MemoryRouter>
+            <MemoryRouter
+                future={{
+                    v7_startTransition: true,
+                    v7_relativeSplatPath: true,
+                }}
+            >
                 <HomePage />
             </MemoryRouter>
         );
@@ -45,7 +55,12 @@ describe('Интеграционные тесты для HomePage', () => {
         );
 
         render(
-            <MemoryRouter>
+            <MemoryRouter
+                future={{
+                    v7_startTransition: true,
+                    v7_relativeSplatPath: true,
+                }}
+            >
                 <HomePage />
             </MemoryRouter>
         );
@@ -65,7 +80,12 @@ describe('Интеграционные тесты для HomePage', () => {
 
     it('TC-HP-006: Сброс выбранного файла', async () => {
         render(
-            <MemoryRouter>
+            <MemoryRouter
+                future={{
+                    v7_startTransition: true,
+                    v7_relativeSplatPath: true,
+                }}
+            >
                 <HomePage />
             </MemoryRouter>
         );

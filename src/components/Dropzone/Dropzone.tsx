@@ -131,12 +131,7 @@ export const Dropzone: FC<Props> = ({ file, status, error, onFileSelect, onClear
         }
 
         return (
-            <Button
-                type="button"
-                variant="upload"
-                onClick={handleUploadClick}
-                disabled={isProcessing}
-            >
+            <Button type="button" variant="upload" onClick={handleUploadClick} disabled={isProcessing}>
                 Загрузить файл
             </Button>
         );
@@ -145,7 +140,7 @@ export const Dropzone: FC<Props> = ({ file, status, error, onFileSelect, onClear
     const renderStatusText = () => {
         if (validationError) {
             return (
-                <Typography color="error" data-testid="dropzone-error">
+                <Typography as="span" color="error" data-testid="dropzone-error">
                     {validationError}
                 </Typography>
             );
@@ -158,7 +153,7 @@ export const Dropzone: FC<Props> = ({ file, status, error, onFileSelect, onClear
         }
         if (error) {
             return (
-                <Typography color="error" data-testid="dropzone-error">
+                <Typography as="span" color="error" data-testid="dropzone-error">
                     {error}
                 </Typography>
             );

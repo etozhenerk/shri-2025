@@ -39,7 +39,12 @@ describe('Интеграционные тесты для HistoryPage', () => {
 
     it('TC-HY-001: Отображение списка записей в истории', async () => {
         render(
-            <MemoryRouter>
+            <MemoryRouter
+                future={{
+                    v7_startTransition: true,
+                    v7_relativeSplatPath: true,
+                }}
+            >
                 <HistoryPage />
             </MemoryRouter>
         );
@@ -51,7 +56,12 @@ describe('Интеграционные тесты для HistoryPage', () => {
 
     it('TC-HY-002: Открытие и закрытие модального окна с деталями отчета', async () => {
         render(
-            <MemoryRouter>
+            <MemoryRouter
+                future={{
+                    v7_startTransition: true,
+                    v7_relativeSplatPath: true,
+                }}
+            >
                 <HistoryPage />
             </MemoryRouter>
         );
@@ -72,7 +82,12 @@ describe('Интеграционные тесты для HistoryPage', () => {
 
     it('TC-HY-003: Удаление одной записи из истории', async () => {
         render(
-            <MemoryRouter>
+            <MemoryRouter
+                future={{
+                    v7_startTransition: true,
+                    v7_relativeSplatPath: true,
+                }}
+            >
                 <HistoryPage />
             </MemoryRouter>
         );
@@ -89,7 +104,12 @@ describe('Интеграционные тесты для HistoryPage', () => {
 
     it('TC-HY-004: Полная очистка истории', async () => {
         render(
-            <MemoryRouter>
+            <MemoryRouter
+                future={{
+                    v7_startTransition: true,
+                    v7_relativeSplatPath: true,
+                }}
+            >
                 <HistoryPage />
             </MemoryRouter>
         );
@@ -105,7 +125,12 @@ describe('Интеграционные тесты для HistoryPage', () => {
 
     it('TC-HY-005: Клик по записи с ошибкой не открывает модальное окно', async () => {
         render(
-            <MemoryRouter>
+            <MemoryRouter
+                future={{
+                    v7_startTransition: true,
+                    v7_relativeSplatPath: true,
+                }}
+            >
                 <HistoryPage />
             </MemoryRouter>
         );
@@ -119,7 +144,13 @@ describe('Интеграционные тесты для HistoryPage', () => {
 
     it('TC-HY-006: Кнопка "Сгенерировать больше" перенаправляет на страницу генерации', async () => {
         render(
-            <MemoryRouter initialEntries={['/history']}>
+            <MemoryRouter
+                initialEntries={['/history']}
+                future={{
+                    v7_startTransition: true,
+                    v7_relativeSplatPath: true,
+                }}
+            >
                 <Routes>
                     <Route path="/history" element={<HistoryPage />} />
                     <Route path="/generate" element={<GeneratePage />} />
@@ -137,7 +168,12 @@ describe('Интеграционные тесты для HistoryPage', () => {
     it('TC-HY-007: Отображение пустой страницы истории', async () => {
         localStorageMock.clear();
         render(
-            <MemoryRouter>
+            <MemoryRouter
+                future={{
+                    v7_startTransition: true,
+                    v7_relativeSplatPath: true,
+                }}
+            >
                 <HistoryPage />
             </MemoryRouter>
         );
