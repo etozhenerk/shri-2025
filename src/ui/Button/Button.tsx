@@ -1,7 +1,9 @@
-import { ButtonHTMLAttributes, FC, PropsWithChildren } from 'react';
+import { FC, PropsWithChildren, ButtonHTMLAttributes } from 'react';
 
 import { WithTestId } from '@app-types/testing';
 import cn from 'classnames';
+
+import { Loader } from '../Loader';
 
 import styles from './Button.module.css';
 
@@ -10,6 +12,7 @@ type Variant = 'primary' | 'secondary' | 'download' | 'upload' | 'clear';
 type Props = PropsWithChildren & ButtonHTMLAttributes<HTMLButtonElement> & WithTestId & {
     variant?: Variant;
     fullWidth?: boolean;
+    isLoading?: boolean;
 };
 
 export const Button: FC<Props> = ({
@@ -18,6 +21,7 @@ export const Button: FC<Props> = ({
     fullWidth = false,
     className = '',
     disabled = false,
+    isLoading = false,
     'data-testid': testId,
     ...rest
 }) => {
@@ -28,15 +32,15 @@ export const Button: FC<Props> = ({
                 styles[variant],
                 {
                     [styles.fullWidth]: fullWidth,
-                    [styles.disabled]: disabled,
+                    [styles.disabled]: disabled || isLoading,
                 },
                 className
             )}
-            disabled={disabled}
-            data-testid={testId}
+            disabled={disabled || isLoading}
+            data-testid={testId || 'ui-button'}
             {...rest}
         >
-            {children}
+            {isLoading ? <Loader size={20} /> : children}
         </button>
     );
 };

@@ -1,3 +1,5 @@
+import { SVGProps } from 'react';
+
 export type Highlights = {
     total_spend_galactic: number; // общие расходы в галактических кредитах
     rows_affected: number; // количество обработанных записей
@@ -14,24 +16,9 @@ export type WithClassName = {
     className?: string;
 };
 
-export type IconBaseProps = {
-    /**
-     * Цвет иконки
-     */
-    color?: string;
+export type SvgBaseProps = SVGProps<SVGSVGElement>;
 
-    /**
-     * Размер иконки
-     */
-    size: number;
-
-    /**
-     * Текст при наведении мышки
-     */
-    title?: string;
-
-    /**
-     * Дочерние элементы
-     */
-    children?: React.ReactNode;
-} & React.ComponentPropsWithoutRef<'svg'>;
+export interface IconBaseProps extends SvgBaseProps {
+    size?: number;
+    viewBox?: string;
+}
