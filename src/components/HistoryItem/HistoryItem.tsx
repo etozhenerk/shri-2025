@@ -1,10 +1,8 @@
 import { FC } from 'react';
 
 import { HistoryItemType } from '@app-types/history';
-import { Button } from '@ui/Button';
-import { File } from '@ui/icons/File';
-import { Trash } from '@ui/icons/Trash';
-import { Typography } from '@ui/Typography';
+import { Button } from '@shri/ui-kit';
+import { File, Trash, Typography } from '@shri/ui-kit';
 import { formatDate } from '@utils/formatDate';
 import cn from 'classnames';
 

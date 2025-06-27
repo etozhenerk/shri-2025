@@ -1,9 +1,7 @@
 import { FC, useRef, useState, useCallback } from 'react';
 
 import { AnalysisStatus } from '@app-types/analysis';
-import { Button } from '@ui/Button';
-import { Loader } from '@ui/Loader';
-import { Typography } from '@ui/Typography';
+import { Button, Loader, Typography } from '@shri/ui-kit';
 import { isCsvFile } from '@utils/analysis';
 import cn from 'classnames';
 

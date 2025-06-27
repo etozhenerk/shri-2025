@@ -1,4 +1,4 @@
-import { Button } from '@ui/Button';
+import { Button } from '@shri/ui-kit';
 import { useNavigate } from 'react-router-dom';
 
 export const GenerateMoreButton = () => {

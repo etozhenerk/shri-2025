@@ -1,41 +1,19 @@
 {
+    "extends": "./tsconfig.base.json",
     "compilerOptions": {
-        "target": "ES2020",
-        "useDefineForClassFields": true,
-        "lib": ["ES2020", "DOM", "DOM.Iterable"],
-        "module": "ESNext",
-        "skipLibCheck": true,
-
-        /* Bundler mode */
-        "moduleResolution": "bundler",
-        "allowImportingTsExtensions": true,
-        "resolveJsonModule": true,
-        "isolatedModules": true,
-        "noEmit": true,
-        "jsx": "react-jsx",
-        "types": ["@testing-library/jest-dom"],
-
-        /* Linting */
-        "strict": true,
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
-        "noFallthroughCasesInSwitch": true,
-        "baseUrl": ".",
         "paths": {
-            "@pages/*": ["src/pages/*"],
+            "@shri/ui-kit": ["packages/ui-kit/src"],
+            "@shri/playwright": ["packages/playwright/src"],
+            "@app-types/*": ["src/types/*"],
             "@components/*": ["src/components/*"],
-            "@layouts/*": ["src/layouts/*"],
-            "@services/*": ["src/services/*"],
+            "@hooks/*": ["src/hooks/*"],
+            "@pages/*": ["src/pages/*"],
             "@store/*": ["src/store/*"],
             "@styles/*": ["src/styles/*"],
             "@utils/*": ["src/utils/*"],
-            "@hooks/*": ["src/hooks/*"],
-            "@ui/*": ["src/ui/*"],
-            "@constants/*": ["src/constants/*"],
-            "@app-types/*": ["src/types/*"],
             "@tests/*": ["tests/*"]
         }
     },
-    "include": ["src"],
+    "include": ["src", "tests", "packages/ui-kit/src", "packages/playwright/src"],
     "references": [{ "path": "./tsconfig.node.json" }]
 }

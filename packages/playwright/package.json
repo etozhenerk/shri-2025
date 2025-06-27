@@ -1,0 +1,10 @@
+{
+  "name": "@shri/playwright",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {},
+  "dependencies": {
+    "@playwright/test": "^1.53.0"
+  }
+} 

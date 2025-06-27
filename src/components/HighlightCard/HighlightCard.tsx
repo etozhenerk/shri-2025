@@ -1,8 +1,7 @@
 import { FC } from 'react';
 
 import { AnalysisHighlight } from '@app-types/analysis';
-import { WithClassName } from '@app-types/common';
-import { Typography } from '@ui/Typography';
+import { WithClassName, Typography } from '@shri/ui-kit';
 import cn from 'classnames';
 
 import styles from './HighlightCard.module.css';

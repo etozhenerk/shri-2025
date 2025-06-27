@@ -1,5 +1,5 @@
+import { Button } from '@shri/ui-kit';
 import { useHistoryStore } from '@store/historyStore';
-import { Button } from '@ui/Button';
 import { clearHistory as clearHistoryStorage } from '@utils/storage';
 
 export const ClearHistoryButton = () => {

@@ -1,4 +1,4 @@
-import path from 'node:path';
+import path from 'path';
 
 import react from '@vitejs/plugin-react';
 import { defineConfig, loadEnv } from 'vite';
@@ -11,22 +11,19 @@ export default defineConfig(({ mode }) => {
         define: {
             'process.env.API_HOST': JSON.stringify(env.API_HOST),
         },
+        plugins: [react()],
         resolve: {
             alias: {
-                '@pages': path.resolve(__dirname, './src/pages'),
+                '@shri/ui-kit': path.resolve(__dirname, './packages/ui-kit/src'),
+                '@app-types': path.resolve(__dirname, './src/types'),
                 '@components': path.resolve(__dirname, './src/components'),
-                '@layouts': path.resolve(__dirname, './src/layouts'),
-                '@services': path.resolve(__dirname, './src/services'),
+                '@hooks': path.resolve(__dirname, './src/hooks'),
+                '@pages': path.resolve(__dirname, './src/pages'),
                 '@store': path.resolve(__dirname, './src/store'),
                 '@styles': path.resolve(__dirname, './src/styles'),
                 '@utils': path.resolve(__dirname, './src/utils'),
-                '@hooks': path.resolve(__dirname, './src/hooks'),
-                '@ui': path.resolve(__dirname, './src/ui'),
-                '@app-types': path.resolve(__dirname, './src/types'),
-                '@constants': path.resolve(__dirname, './src/constants'),
-                '@tests': path.resolve(__dirname, './tests/'),
+                '@tests': path.resolve(__dirname, './tests'),
             },
         },
-        plugins: [react()],
     };
 });

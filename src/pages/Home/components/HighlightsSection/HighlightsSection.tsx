@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import { AnalysisHighlight } from '@app-types/analysis';
 import { HighlightCard } from '@components/HighlightCard';
-import { Typography } from '@ui/Typography';
+import { Typography } from '@shri/ui-kit';
 
 import styles from './HighlightsSection.module.css';
 

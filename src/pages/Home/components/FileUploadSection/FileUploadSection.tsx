@@ -2,9 +2,10 @@ import { FC } from 'react';
 
 import { AnalysisStatus } from '@app-types/analysis';
 import { Dropzone } from '@components/Dropzone';
-import { Button } from '@ui/Button';
+import { Button } from '@shri/ui-kit';
 
 import styles from './FileUploadSection.module.css';
+
 
 type Props = {
     file: File | null;

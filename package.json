@@ -1,11 +1,14 @@
 {
     "name": "shri-2025",
     "private": true,
-    "version": "0.1.0",
+    "version": "0.0.0",
     "type": "module",
+    "workspaces": [
+        "packages/*"
+    ],
     "scripts": {
-        "storybook": "storybook dev -p 6006",
-        "build-storybook": "storybook build",
+        "storybook": "npm run storybook -w @shri/ui-kit",
+        "build-storybook": "npm run build-storybook -w @shri/ui-kit",
         "dev": "vite",
         "build": "tsc && vite build",
         "preview": "vite preview",
@@ -14,6 +17,8 @@
         "format": "prettier --write .",
         "test": "npm run test:all",
         "test:all": "npm run test:unit && npm run test:integration && npm run test:e2e",
+        "test:storybook": "npm run test:storybook -w @shri/ui-kit",
+        "test:ui-snapshot": "npm run test:ui-snapshot -w @shri/ui-kit",
         "test:unit": "vitest run --exclude src/pages/**/*.test.tsx",
         "test:integration": "vitest run",
         "test:e2e": "playwright test",
@@ -27,6 +32,8 @@
         "test:flaky:all": "scripts/flaky-test-run-all.sh"
     },
     "dependencies": {
+        "@reduxjs/toolkit": "^2.2.3",
+        "@shri/ui-kit": "workspace:*",
         "classnames": "^2.5.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
@@ -34,6 +41,7 @@
         "zustand": "^4.5.2"
     },
     "devDependencies": {
+        "@shri/playwright": "workspace:*",
         "@chromatic-com/storybook": "^1.9.0",
         "@playwright/test": "^1.53.0",
         "@redux-devtools/extension": "^3.3.0",
@@ -53,20 +61,26 @@
         "@types/react-dom": "^18.2.21",
         "@vitejs/plugin-react": "^4.5.2",
         "@vitest/ui": "^3.2.3",
+        "concurrently": "^9.1.2",
         "eslint": "^8.57.0",
         "eslint-config-prettier": "^10.1.5",
         "eslint-plugin-import": "^2.31.0",
         "eslint-plugin-react": "^7.37.5",
         "eslint-plugin-react-hooks": "^4.6.0",
-        "eslint-plugin-react-refresh": "^0.4.5",
+        "eslint-plugin-react-refresh": "^0.4.6",
         "eslint-plugin-simple-import-sort": "^12.1.1",
-        "jsdom": "^26.1.0",
-        "prettier": "^3.2.5",
-        "storybook": "^8.6.14",
+        "eslint-plugin-storybook": "^0.8.0",
+        "identity-obj-proxy": "^3.0.0",
+        "jsdom": "^24.0.0",
+        "postcss": "^8.4.38",
+        "prettier": "3.2.5",
+        "storybook": "^8.0.8",
+        "tailwindcss": "^3.4.3",
         "typescript": "^5.2.2",
         "typescript-eslint": "^8.34.0",
-        "vite": "^5.1.6",
+        "vite": "^5.2.0",
         "vite-tsconfig-paths": "^5.1.4",
-        "vitest": "^3.2.3"
+        "vitest": "^3.2.3",
+        "wait-on": "^8.0.3"
     }
 }

@@ -1,7 +1,8 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { expect, test } from '../support/fixtures';
+import { expect, test } from '@shri/playwright';
+
 import { successAnalysisMock } from '../test-data/mocks/analysis-success';
 
 const __filename = fileURLToPath(import.meta.url);

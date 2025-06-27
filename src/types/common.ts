@@ -1,4 +1,4 @@
-import { SVGProps } from 'react';
+// import { SVGProps } from 'react';
 
 export type Highlights = {
     total_spend_galactic: number; // общие расходы в галактических кредитах
@@ -11,14 +11,3 @@ export type Highlights = {
     big_spent_civ: string; // цивилизация с максимальными расходами
     less_spent_civ: string; // цивилизация с минимальными расходами
 };
-
-export type WithClassName = {
-    className?: string;
-};
-
-export type SvgBaseProps = SVGProps<SVGSVGElement>;
-
-export interface IconBaseProps extends SvgBaseProps {
-    size?: number;
-    viewBox?: string;
-}

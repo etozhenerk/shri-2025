@@ -1,11 +1,12 @@
 import { FC } from 'react';
 
 import { AnalysisHighlight } from '@app-types/analysis';
-import { HighlightCard } from '@components/HighlightCard';
+import { Modal } from '@shri/ui-kit';
 import { useHistoryStore } from '@store/historyStore';
-import { Modal } from '@ui/Modal';
 import { convertHighlightsToArray } from '@utils/analysis';
 import { useShallow } from 'zustand/react/shallow';
+
+import { HighlightCard } from '../HighlightCard';
 
 import styles from './HistoryModal.module.css';
 

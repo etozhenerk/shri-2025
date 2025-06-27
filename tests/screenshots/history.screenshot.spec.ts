@@ -1,4 +1,5 @@
-import { expect, test } from '../support/fixtures';
+import { expect, test } from '@shri/playwright';
+
 import { historyMock } from '../test-data/mocks/history';
 
 test('TC-HY-008: Скриншот состояния страницы "История" с заполненным списком', async ({ page, actions }) => {

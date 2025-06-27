@@ -1,8 +1,7 @@
 import { FC } from 'react';
 
-import { Smile } from '@ui/icons/Smile';
-import { SmileSad } from '@ui/icons/SmileSad';
-import { Typography } from '@ui/Typography';
+import { Typography } from '@shri/ui-kit';
+import { Smile, SmileSad } from '@shri/ui-kit';
 import cn from 'classnames';
 
 import styles from './FileStatus.module.css';

@@ -1,6 +1,6 @@
-import { expect } from '@playwright/test';
+import { expect, test } from '@shri/playwright';
 
-import { test } from '../support/fixtures';
+import { analysisErrorMock } from '../test-data/mocks/analysis-error';
 import { successAnalysisMock } from '../test-data/mocks/analysis-success';
 
 const TEST_OPTIONS = { maxDiffPixelRatio: 0.05, fullPage: true };
@@ -32,7 +32,7 @@ test('TC-HP-008: Скриншот состояния страницы с рез�
 
 test('TC-HP-009: Скриншот состояния страницы с ошибкой обработки', async ({ page, actions, mocker, pages }) => {
     await test.step('Шаг 1: Загрузить валидный `.csv` файл и дождаться отображения ошибки', async () => {
-        await mocker.mockAnalysisError();
+        await mocker.mock('**/aggregate*', analysisErrorMock, { delay: 200 });
         await actions.home.uploadFile('tests/test-data/test-data.csv');
         await actions.home.send();
 

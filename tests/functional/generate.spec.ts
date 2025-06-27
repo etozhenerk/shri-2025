@@ -1,4 +1,4 @@
-import { expect, test } from '../support/fixtures';
+import { expect, test } from '@shri/playwright';
 
 test.beforeEach(async ({ actions }) => {
     await actions.generate.goto();
