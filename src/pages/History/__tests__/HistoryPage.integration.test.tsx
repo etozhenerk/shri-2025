@@ -1,3 +1,4 @@
+import { GeneratePage } from '@pages/Generate';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { historyMock } from '@tests/test-data/mocks/history';
 import { STORAGE_KEY } from '@utils/consts';
@@ -121,7 +122,7 @@ describe('Интеграционные тесты для HistoryPage', () => {
             <MemoryRouter initialEntries={['/history']}>
                 <Routes>
                     <Route path="/history" element={<HistoryPage />} />
-                    <Route path="/generate" element={<div>Generate Page</div>} />
+                    <Route path="/generate" element={<GeneratePage />} />
                 </Routes>
             </MemoryRouter>
         );
@@ -129,7 +130,7 @@ describe('Интеграционные тесты для HistoryPage', () => {
         fireEvent.click(generateMoreButton);
 
         await waitFor(() => {
-            expect(screen.getByText('Generate Page')).toBeInTheDocument();
+            expect(screen.getByTestId('generate-button')).toBeInTheDocument();
         });
     });
 
