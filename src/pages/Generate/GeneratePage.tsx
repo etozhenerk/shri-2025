@@ -1,15 +1,12 @@
 import { useEffect, useState } from 'react';
 
+import { api } from '@api';
 import { Button } from '@shri/ui-kit/components/Button';
 import { Loader } from '@shri/ui-kit/components/Loader';
 import { Typography } from '@shri/ui-kit/components/Typography';
-import { API_HOST } from '@utils/consts';
 import cn from 'classnames';
 
 import styles from './GeneratePage.module.css';
-
-// 10 мб
-const DEFAULT_SIZE = 0.01;
 
 export const GeneratePage = () => {
     const [isGenerating, setIsGenerating] = useState(false);
@@ -21,25 +18,7 @@ export const GeneratePage = () => {
             setIsGenerating(true);
             setError(null);
 
-            const response = await fetch(`${API_HOST}/report?size=${DEFAULT_SIZE}`, {
-                method: 'GET',
-            });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(
-                    errorData.error
-                        ? `Произошла ошибка: ${errorData.error}`
-                        : 'Неизвестная ошибка при попытке сгенерировать отчёт'
-                );
-            }
-
-            const contentDisposition = response.headers.get('Content-Disposition');
-            const filename = contentDisposition
-                ? contentDisposition.split('filename=')[1].replace(/"/g, '')
-                : 'report.csv';
-
-            const blob = await response.blob();
+            const { blob, filename } = await api.report.generateReport();
 
             const url = window.URL.createObjectURL(blob);
             const link = document.createElement('a');
@@ -52,8 +31,8 @@ export const GeneratePage = () => {
             window.URL.revokeObjectURL(url);
 
             setSuccessMessage('Отчёт успешно сгенерирован!');
-        } catch (error) {
-            setError(error instanceof Error ? error.message : 'Неизвестная ошибка при попытке сгенерировать отчёт');
+        } catch (err) {
+            setError(err instanceof Error ? err.message : 'Неизвестная ошибка при попытке сгенерировать отчёт');
         } finally {
             setIsGenerating(false);
         }

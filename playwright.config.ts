@@ -12,7 +12,7 @@ import { defineConfig, devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-    testDir: './',
+    testDir: './tests',
     testMatch: ['tests/**/*.spec.ts', 'tests/**/*.screenshot.spec.ts'],
     /* Run tests in files in parallel */
     fullyParallel: true,
@@ -38,11 +38,13 @@ export default defineConfig({
         {
             name: 'chromium',
             testMatch: ['tests/**/*.spec.ts', 'tests/**/*.screenshot.spec.ts'],
+            testIgnore: 'packages/ui-kit/src/**/*.spec.ts',
             use: { ...devices['Desktop Chrome'], viewport: { width: 1920, height: 1080 } },
         },
         {
             name: 'ui-snapshot',
-            testMatch: 'packages/ui-kit/src/**/*.spec.ts',
+            testDir: 'packages/ui-kit',
+            testMatch: '**/*.spec.ts',
             use: { ...devices['Desktop Chrome'], viewport: { width: 1920, height: 1080 } },
         },
 

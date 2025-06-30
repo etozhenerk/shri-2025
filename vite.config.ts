@@ -15,6 +15,7 @@ export default defineConfig(({ mode }) => {
         resolve: {
             alias: {
                 '@shri/ui-kit': path.resolve(__dirname, './packages/ui-kit/src'),
+                '@shri/playwright': path.resolve(__dirname, './packages/playwright/src'),
                 '@app-types': path.resolve(__dirname, './src/types'),
                 '@components': path.resolve(__dirname, './src/components'),
                 '@hooks': path.resolve(__dirname, './src/hooks'),
@@ -23,6 +24,7 @@ export default defineConfig(({ mode }) => {
                 '@styles': path.resolve(__dirname, './src/styles'),
                 '@utils': path.resolve(__dirname, './src/utils'),
                 '@tests': path.resolve(__dirname, './tests'),
+                '@api': path.resolve(__dirname, './src/api'),
             },
         },
     };

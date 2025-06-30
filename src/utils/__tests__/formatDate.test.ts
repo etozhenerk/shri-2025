@@ -27,4 +27,10 @@ describe('Утилита formatDate', () => {
         const date = new Date('2024-02-29T10:00:00'); // Високосный год
         expect(formatDate(date)).toBe('29.02.2024');
     });
+
+    it('должна корректно форматировать дату из числового таймстампа', () => {
+        // 1 января 2024 года
+        const timestamp = 1704067200000;
+        expect(formatDate(timestamp)).toBe('01.01.2024');
+    });
 }); 

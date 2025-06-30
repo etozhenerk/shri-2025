@@ -4,6 +4,7 @@
         "paths": {
             "@shri/ui-kit/*": ["packages/ui-kit/src/*"],
             "@shri/playwright": ["packages/playwright/src"],
+            "@api": ["src/api"],
             "@app-types/*": ["src/types/*"],
             "@components/*": ["src/components/*"],
             "@hooks/*": ["src/hooks/*"],

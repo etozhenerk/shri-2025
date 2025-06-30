@@ -25,7 +25,7 @@ graph TD
     -   `components/`: Директория со всеми UI-компонентами.
         -   `Button/`: Пример папки компонента.
             -   `index.ts`: Экспорт компонента.
-            -   `Button.tsx`: Реализация компонента.
+        -   `Button.tsx`: Реализация компонента.
             -   `Button.module.css`: CSS-модуль.
             -   `Button.stories.tsx`: "Истории" для Storybook.
             -   `Button.spec.ts`: Скриншот-тест Playwright.
