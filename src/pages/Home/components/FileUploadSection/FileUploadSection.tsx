@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import { AnalysisStatus } from '@app-types/analysis';
 import { Dropzone } from '@components/Dropzone';
-import { Button } from '@shri/ui-kit';
+import { Button } from '@shri/ui-kit/components/Button';
 
 import styles from './FileUploadSection.module.css';
 

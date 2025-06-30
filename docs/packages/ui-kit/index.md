@@ -6,21 +6,43 @@
 
 ## Структура пакета
 
--   `src/`: Исходный код компонентов, стилей, иконок и типов.
-    -   `Button/`: Пример компонента.
-        -   `__stories__/Button.stories.tsx`: Истории для Storybook.
-        -   `Button.tsx`: Реализация компонента.
-        -   `Button.module.css`: CSS-модуль компонента.
--   `__tests__/`: Скриншот-тесты для компонентов.
+Ключевой принцип — **колокация**. Все файлы, относящиеся к одному компоненту (логика, стили, истории для Storybook, тесты), лежат в одной директории.
+
+```mermaid
+graph TD
+    subgraph ComponentFolder [Button]
+        direction LR
+        A(Button.tsx) --> I
+        B(Button.module.css) --> I
+        C(Button.stories.tsx) --> I
+        D(Button.spec.ts) --> I
+        E(index.ts) --> I
+    end
+    I((Button Component))
+```
+
+-   `src/`: Исходный код компонентов, иконок и типов.
+    -   `components/`: Директория со всеми UI-компонентами.
+        -   `Button/`: Пример папки компонента.
+            -   `index.ts`: Экспорт компонента.
+            -   `Button.tsx`: Реализация компонента.
+            -   `Button.module.css`: CSS-модуль.
+            -   `Button.stories.tsx`: "Истории" для Storybook.
+            -   `Button.spec.ts`: Скриншот-тест Playwright.
+    -   `icons/`: Изолированные SVG-иконки.
 -   `.storybook/`: Конфигурация Storybook для этого пакета.
 -   `package.json`: Зависимости и скрипты пакета.
 
 ## Использование
 
-Для использования компонентов из этого пакета в основном приложении, импортируйте их напрямую:
+Для использования компонентов или иконок из этого пакета в основном приложении, импортируйте их напрямую из соответствующих директорий:
 
 ```tsx
-import { Button } from '@shri/ui-kit';
+// Импорт компонента
+import { Button } from '@shri/ui-kit/components/Button';
+
+// Импорт иконки
+import { History } from '@shri/ui-kit/icons/History';
 ```
 
 ## Storybook

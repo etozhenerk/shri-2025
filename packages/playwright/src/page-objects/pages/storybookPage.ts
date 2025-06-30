@@ -9,6 +9,6 @@ export class StorybookPage {
 
     public get component() {
         // Ищем компонент по его data-testid внутри iframe Storybook
-        return this.page.getByTestId('ui-button');
+        return this.page.locator('#storybook-root');
     }
 }

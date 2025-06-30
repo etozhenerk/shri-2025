@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
-import { SvgBase } from '../../SvgBase';
 import { IconBaseProps } from '../../types/common';
+import { SvgBase } from '../SvgBase';
 
 export const Cross: FC<IconBaseProps> = (props) => (
     <SvgBase viewBox="0 0 32 32" {...props}>

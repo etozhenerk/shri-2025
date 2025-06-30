@@ -18,6 +18,6 @@ export class StorybookActions {
      * @param storyId - ID истории, например, 'ui-button--primary'.
      */
     public async openStory(storyId: string): Promise<void> {
-        await this.page.goto(`${STORYBOOK_BASE_URL}/iframe.html?id=${storyId}`, { waitUntil: 'domcontentloaded' });
+        await this.page.goto(`${STORYBOOK_BASE_URL}/iframe.html?id=${storyId}`, { waitUntil: 'load' });
     }
 } 

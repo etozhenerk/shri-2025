@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { Typography } from '@shri/ui-kit';
+import { Typography } from '@shri/ui-kit/components/Typography';
 import cn from 'classnames';
 import { NavLink } from 'react-router-dom';
 

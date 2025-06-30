@@ -1,4 +1,4 @@
-import { Button } from '@shri/ui-kit';
+import { Button } from '@shri/ui-kit/components/Button';
 import { useHistoryStore } from '@store/historyStore';
 import { clearHistory as clearHistoryStorage } from '@utils/storage';
 

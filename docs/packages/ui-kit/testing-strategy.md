@@ -38,9 +38,10 @@
 Ключевой принцип — **колокация**. Все, что относится к компоненту, должно лежать рядом с ним внутри пакета `@shri/ui-kit`.
 
 -   **Пакет**: `packages/ui-kit/`
-    -   **Компонент**: `src/Button/Button.tsx`
-    -   **История Storybook**: `src/Button/__stories__/Button.stories.tsx`
-    -   **UI-снэпшот тест**: `__tests__/Button.spec.ts`
+    -   **Компонент**: `src/components/Button/`
+        -   `Button.tsx`: Исходный код.
+        -   `Button.stories.tsx`: "История" для Storybook.
+        -   `Button.spec.ts`: UI-снэпшот тест.
 
 ### Именование и теги
 

@@ -1,4 +1,4 @@
-import { Typography } from '@shri/ui-kit';
+import { Typography } from '@shri/ui-kit/components/Typography';
 
 import { Logo } from './Logo';
 import styles from './Title.module.css';

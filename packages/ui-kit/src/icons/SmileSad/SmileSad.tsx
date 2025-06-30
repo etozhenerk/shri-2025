@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
-import { SvgBase } from '../../SvgBase';
 import { IconBaseProps } from '../../types/common';
+import { SvgBase } from '../SvgBase';
 
 export const SmileSad: FC<IconBaseProps> = (props) => (
     <SvgBase viewBox="0 0 40 40" {...props}>

@@ -2,7 +2,7 @@
     "extends": "./tsconfig.base.json",
     "compilerOptions": {
         "paths": {
-            "@shri/ui-kit": ["packages/ui-kit/src"],
+            "@shri/ui-kit/*": ["packages/ui-kit/src/*"],
             "@shri/playwright": ["packages/playwright/src"],
             "@app-types/*": ["src/types/*"],
             "@components/*": ["src/components/*"],

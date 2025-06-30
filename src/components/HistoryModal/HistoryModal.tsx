@@ -1,12 +1,11 @@
 import { FC } from 'react';
 
 import { AnalysisHighlight } from '@app-types/analysis';
-import { Modal } from '@shri/ui-kit';
+import { HighlightCard } from '@shri/ui-kit/components/HighlightCard';
+import { Modal } from '@shri/ui-kit/components/Modal';
 import { useHistoryStore } from '@store/historyStore';
 import { convertHighlightsToArray } from '@utils/analysis';
 import { useShallow } from 'zustand/react/shallow';
-
-import { HighlightCard } from '../HighlightCard';
 
 import styles from './HistoryModal.module.css';
 
@@ -30,7 +29,12 @@ export const HistoryModal: FC = () => {
             <div className={styles.root}>
                 <div className={styles.highlights}>
                     {hightlights.map((highlight) => (
-                        <HighlightCard key={highlight.title} highlight={highlight} className={styles.hightlightCard} />
+                        <HighlightCard
+                            key={highlight.title}
+                            title={highlight.title}
+                            description={highlight.description}
+                            className={styles.hightlightCard}
+                        />
                     ))}
                 </div>
             </div>

@@ -6,22 +6,32 @@
 
 ## Правила написания тестов и историй
 
+Ключевой принцип — **колокация**. Все файлы, относящиеся к одному компоненту, должны лежать вместе в его директории.
+
+```mermaid
+graph TD
+    subgraph ComponentFolder [Button]
+        direction LR
+        A(Button.tsx) --> I
+        B(Button.module.css) --> I
+        C(Button.stories.tsx) --> I
+        D(Button.spec.ts) --> I
+        E(index.ts) --> I
+    end
+    I((Button Component))
+```
+
 1.  **Расположение файлов:**
-    *   Все UI-компоненты находятся в `packages/ui-kit/src`.
-    *   Для каждого компонента (например, `packages/ui-kit/src/Button/Button.tsx`) создается директория `__stories__`.
-    *   Внутри нее создается файл с историями: `Button.stories.tsx`.
-    *   Скриншот-тесты для компонентов лежат в `packages/ui-kit/__tests__`.
+    *   Все UI-компоненты находятся в `packages/ui-kit/src/components`.
+    *   Для каждого компонента создается папка (например, `Button/`), в которой лежат:
+        *   `Button.tsx` — код компонента.
+        *   `Button.module.css` — стили.
+        *   `Button.stories.tsx` — "истории" для Storybook.
+        *   `Button.spec.ts` — скриншот-тест Playwright.
+        *   `index.ts` — файл для экспорта.
 
-2.  **Структура истории:**
-    *   Каждый файл `*.stories.tsx` содержит мета-информацию о компоненте и одну или несколько "историй" для каждого состояния.
-
-3.  **Структура теста:**
-    *   Тесты используют фикстуры из пакета `@shri/playwright`.
-    *   Каждый тест открывает нужную историю в Storybook и делает скриншот.
-
-4.  **Фокус на визуальных тестах:**
-    *   Основной метод тестирования — **визуальный снимок (snapshot)** с помощью Playwright.
-    *   Playwright сравнивает новый скриншот с эталонным. Любое визуальное расхождение приводит к падению теста.
+2.  **Структура истории и теста:**
+    *   Файлы историй и тестов содержат все необходимое для демонстрации и проверки компонента в изоляции.
 
 ## Запуск тестов
 
@@ -31,17 +41,17 @@
 npm run test:ui-snapshot
 ```
 
-Эта команда запустит Storybook в headless-режиме и выполнит все тесты Playwright, отмеченные тегом `@ui-snapshot`.
+Эта команда запустит Storybook в headless-режиме и выполнит все тесты Playwright, найденные по маске `packages/ui-kit/src/**/*.spec.ts` и отмеченные тегом `@ui-snapshot`.
 
 ## Пример
 
 **История в Storybook:**
 
 ```tsx
-// packages/ui-kit/src/Button/__stories__/Button.stories.tsx
+// packages/ui-kit/src/components/Button/Button.stories.tsx
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button } from '../Button';
+import { Button } from './Button';
 
 const meta = {
   title: 'UI/Button',
@@ -63,7 +73,7 @@ export const Primary: Story = {
 **Скриншот-тест в Playwright:**
 
 ```ts
-// packages/ui-kit/__tests__/Button.spec.ts
+// packages/ui-kit/src/components/Button/Button.spec.ts
 import { expect, test } from '@shri/playwright';
 
 test('Компонент Button, состояние: primary @ui-snapshot', async ({ actions, pages }) => {

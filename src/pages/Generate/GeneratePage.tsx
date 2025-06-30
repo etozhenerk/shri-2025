@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 
-import { Button, Loader, Typography } from '@shri/ui-kit';
+import { Button } from '@shri/ui-kit/components/Button';
+import { Loader } from '@shri/ui-kit/components/Loader';
+import { Typography } from '@shri/ui-kit/components/Typography';
 import { API_HOST } from '@utils/consts';
 import cn from 'classnames';
 

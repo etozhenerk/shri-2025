@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
-import { SvgBase } from '../../SvgBase';
 import { IconBaseProps } from '../../types/common';
+import { SvgBase } from '../SvgBase';
 
 export const History: FC<IconBaseProps> = ({ size, ...rest }) => (
     <SvgBase size={size} viewBox="0 0 36 36" {...rest}>

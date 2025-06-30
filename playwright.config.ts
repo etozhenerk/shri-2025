@@ -42,7 +42,7 @@ export default defineConfig({
         },
         {
             name: 'ui-snapshot',
-            testMatch: 'packages/ui-kit/__tests__/**/*.spec.ts',
+            testMatch: 'packages/ui-kit/src/**/*.spec.ts',
             use: { ...devices['Desktop Chrome'], viewport: { width: 1920, height: 1080 } },
         },
 

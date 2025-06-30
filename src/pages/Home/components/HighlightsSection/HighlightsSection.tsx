@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
 import { AnalysisHighlight } from '@app-types/analysis';
-import { HighlightCard } from '@components/HighlightCard';
-import { Typography } from '@shri/ui-kit';
+import { HighlightCard } from '@shri/ui-kit/components/HighlightCard';
+import { Typography } from '@shri/ui-kit/components/Typography';
 
 import styles from './HighlightsSection.module.css';
 
@@ -28,7 +28,7 @@ export const HighlightsSection: FC<Props> = ({ highlights }) => {
     return (
         <div className={styles.highlightsGrid} data-testid="highlights-grid">
             {highlights.map((highlight: AnalysisHighlight, index: number) => (
-                <HighlightCard key={index} highlight={highlight} />
+                <HighlightCard key={index} title={highlight.title} description={highlight.description} />
             ))}
         </div>
     );

@@ -1,4 +1,6 @@
-import { Create, History, Upload } from '@shri/ui-kit';
+import { Create } from '@shri/ui-kit/icons/Create';
+import { History } from '@shri/ui-kit/icons/History';
+import { Upload } from '@shri/ui-kit/icons/Upload';
 
 import { NavElement } from './NavElement';
 import styles from './Navigation.module.css';

@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
 
 import { HistoryItemType } from '@app-types/history';
-import { HistoryItem } from '@components/HistoryItem';
+import { HistoryItem } from '@shri/ui-kit/components/HistoryItem';
 import { useHistoryStore } from '@store/historyStore';
+import { formatDate } from '@utils/formatDate';
 import { removeFromHistory } from '@utils/storage';
 import { useShallow } from 'zustand/react/shallow';
 
@@ -35,9 +36,19 @@ export const HistoryList = () => {
 
     return (
         <div className={styles.list} data-testid="history-list">
-            {history.map((item) => (
-                <HistoryItem key={item.id} item={item} onClick={handleItemClick} onDelete={handleDeleteItem} />
-            ))}
+            {history.map((item) => {
+                const { id, fileName, timestamp, highlights } = item;
+                return (
+                    <HistoryItem
+                        key={id}
+                        fileName={fileName}
+                        date={formatDate(timestamp)}
+                        hasHighlights={Boolean(highlights)}
+                        onClick={() => handleItemClick(item)}
+                        onDelete={() => handleDeleteItem(id)}
+                    />
+                );
+            })}
         </div>
     );
 };

@@ -1,12 +1,16 @@
 {
   "name": "@shri/ui-kit",
   "version": "1.0.0",
-  "main": "src/index.ts",
+  "exports": {
+    "./components/*": "./src/components/*/index.ts",
+    "./icons/*": "./src/icons/*/index.ts"
+  },
   "scripts": {
     "storybook": "storybook dev -p 6006 --config-dir .storybook",
     "build-storybook": "storybook build --config-dir .storybook",
     "test:storybook": "concurrently -k \"npm run storybook\" \"wait-on tcp:6006 && test-storybook --url http://localhost:6006\"",
-    "test:ui-snapshot": "concurrently -k -s first -n \"SB,TEST\" \"npm run storybook -- --ci\" \"wait-on tcp:6006 && playwright test --config ../../playwright.config.ts --project=ui-snapshot\""
+    "test:ui-snapshot": "concurrently -k -s first -n \"SB,TEST\" \"npm run storybook -- --ci\" \"wait-on tcp:6006 && playwright test --config ../../playwright.config.ts --project=ui-snapshot\"",
+    "test:ui-snapshot:update": "concurrently -k -s first -n \"SB,TEST\" \"npm run storybook -- --ci\" \"wait-on tcp:6006 && playwright test --config ../../playwright.config.ts --project=ui-snapshot --update-snapshots\""
   },
   "peerDependencies": {
     "react": "^18.2.0",

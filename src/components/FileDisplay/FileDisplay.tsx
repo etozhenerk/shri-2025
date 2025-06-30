@@ -1,7 +1,8 @@
 import { FC } from 'react';
 
-import { Button, Typography } from '@shri/ui-kit';
-import { Clear } from '@shri/ui-kit';
+import { Button } from '@shri/ui-kit/components/Button';
+import { Typography } from '@shri/ui-kit/components/Typography';
+import { Clear } from '@shri/ui-kit/icons/Clear';
 import cn from 'classnames';
 
 import styles from './FileDisplay.module.css';

@@ -1,6 +1,6 @@
 import { Highlights } from '@app-types/common';
 import { useCsvAnalysis } from '@hooks/use-csv-analysis';
-import { Typography } from '@shri/ui-kit';
+import { Typography } from '@shri/ui-kit/components/Typography';
 import { useAnalysisStore } from '@store/analysisStore';
 import { addToHistory } from '@utils/storage';
 
