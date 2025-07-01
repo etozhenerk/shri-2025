@@ -6,7 +6,6 @@ import { Button } from '@shri/ui-kit/components/Button';
 
 import styles from './FileUploadSection.module.css';
 
-
 type Props = {
     file: File | null;
     status: AnalysisStatus;
@@ -19,19 +18,12 @@ type Props = {
 /**
  * Компонент секции загрузки и отправки файла
  */
-export const FileUploadSection: FC<Props> = ({
-    file,
-    status,
-    error,
-    onFileSelect,
-    onSend,
-    onClear,
-}) => {
+export const FileUploadSection: FC<Props> = ({ file, status, error, onFileSelect, onSend, onClear }) => {
     const isProcessing = status === 'processing';
     const showSendButton = file && !isProcessing && status !== 'completed';
 
     return (
-        <div data-testid="file-upload-section">
+        <div className={styles.fileUploadSection} data-testid="file-upload-section">
             <Dropzone file={file} status={status} error={error} onFileSelect={onFileSelect} onClear={onClear} />
 
             {showSendButton && (
@@ -48,4 +40,4 @@ export const FileUploadSection: FC<Props> = ({
             )}
         </div>
     );
-}; 
+};
