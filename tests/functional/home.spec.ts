@@ -20,17 +20,16 @@ test('TC-HP-001: Успешная загрузка и обработка CSV ф�
     const filePath = path.join(__dirname, '..', 'test-data', 'test-data.csv');
     const fileName = 'test-data.csv';
 
-    await test.step('Шаг 1: Нажать на кнопку "Загрузить файл" или на область для загрузки', async () => {
-        // Этот шаг не проверяется в playwright, т.к. открытие системного окна - зона ответственности браузера
-    });
-
-    await test.step('Шаг 2: В системном окне выбора файла выбрать валидный `.csv` файл', async () => {
+    await test.step('Шаг 1 и 2: Нажать на кнопку "Загрузить файл" и выбрать валидный .csv файл', async () => {
+        // Метод uploadFile инкапсулирует в себе и клик, и ожидание системного окна, и выбор файла.
+        // Поэтому мы объединяем шаги.
         await actions.home.uploadFile(filePath);
+
         await expect(pages.home.dropzone).toContainText(fileName);
         await expect(pages.home.sendButton).toBeEnabled();
     });
 
-    await test.step('Шаг 3: Нажать кнопку "Отправить"', async () => {
+    await test.step('Шаг 3: Нажать кнопку "Отправить" и проверить результат', async () => {
         await actions.home.send();
 
         await expect(pages.home.loader).toBeVisible();
@@ -39,6 +38,12 @@ test('TC-HP-001: Успешная загрузка и обработка CSV ф�
 
         const cards = await pages.home.highlightCard.all();
         expect(cards.length).toBe(8);
+
+        // Проверяем, что в истории появилась запись
+        await actions.history.goto();
+        const historyItems = await pages.history.historyItems.all();
+        expect(historyItems.length).toBe(1);
+        await expect(historyItems[0]).toContainText(fileName);
     });
 });
 
@@ -63,5 +68,11 @@ test('TC-HP-002: Успешная загрузка и обработка CSV ф�
 
         const cards = await pages.home.highlightCard.all();
         expect(cards.length).toBe(8);
+
+        // Проверяем, что в истории появилась запись
+        await actions.history.goto();
+        const historyItems = await pages.history.historyItems.all();
+        expect(historyItems.length).toBe(1);
+        await expect(historyItems[0]).toContainText(fileName);
     });
 });

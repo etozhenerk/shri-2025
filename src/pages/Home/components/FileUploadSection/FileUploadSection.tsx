@@ -31,7 +31,7 @@ export const FileUploadSection: FC<Props> = ({
     const showSendButton = file && !isProcessing && status !== 'completed';
 
     return (
-        <>
+        <div data-testid="file-upload-section">
             <Dropzone file={file} status={status} error={error} onFileSelect={onFileSelect} onClear={onClear} />
 
             {showSendButton && (
@@ -46,6 +46,6 @@ export const FileUploadSection: FC<Props> = ({
                     Отправить
                 </Button>
             )}
-        </>
+        </div>
     );
 }; 

@@ -1,10 +1,18 @@
+import { useAnalysisStore } from '@store/analysisStore';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi, beforeEach } from 'vitest';
 
 import { HomePage } from '../HomePage';
 
+const initialAnalysisState = useAnalysisStore.getState();
+
 describe('Интеграционные тесты для HomePage', () => {
+    beforeEach(() => {
+        // Сбрасываем состояние стора перед каждым тестом
+        useAnalysisStore.setState(initialAnalysisState, true);
+    });
+
     it('TC-HP-003: Попытка загрузки файла с неверным расширением', async () => {
         render(
             <MemoryRouter

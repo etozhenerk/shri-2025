@@ -26,8 +26,8 @@
         "test:e2e:ui": "playwright test --ui",
         "test:e2e:report": "playwright show-report",
         "test:debug": "playwright test --debug",
-        "test:functional": "playwright test --grep-invert \".screenshot.spec.ts\"",
-        "test:screenshots": "playwright test --grep \".screenshot.spec.ts\"",
+        "test:functional": "playwright test tests/functional/",
+        "test:screenshots": "playwright test tests/screenshots/",
         "test:flaky": "scripts/flaky-test-run.sh",
         "test:flaky:all": "scripts/flaky-test-run-all.sh"
     },
@@ -72,6 +72,7 @@
         "eslint-plugin-storybook": "^0.8.0",
         "identity-obj-proxy": "^3.0.0",
         "jsdom": "^24.0.0",
+        "npm-run-all": "^4.1.5",
         "postcss": "^8.4.38",
         "prettier": "3.2.5",
         "storybook": "^8.0.8",

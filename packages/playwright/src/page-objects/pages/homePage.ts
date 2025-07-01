@@ -31,6 +31,10 @@ export class HomePage extends BasePage {
         return this.root.getByTestId('send-button');
     }
 
+    public get fileUploadSection() {
+        return this.root.getByTestId('file-upload-section');
+    }
+
     public get highlightsGrid() {
         return this.root.getByTestId('highlights-grid');
     }

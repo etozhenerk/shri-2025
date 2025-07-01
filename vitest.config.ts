@@ -1,5 +1,6 @@
 /// <reference types="vitest" />
 import { mergeConfig } from 'vite';
+import tsconfigPaths from 'vite-tsconfig-paths';
 import { defineConfig } from 'vitest/config';
 
 import viteConfig from './vite.config';
@@ -14,10 +15,11 @@ export default defineConfig((config) => {
     return mergeConfig(
         baseConfig,
         defineConfig({
+            plugins: [tsconfigPaths()],
             test: {
                 globals: true,
                 environment: 'jsdom',
-                setupFiles: 'tests/setup.ts',
+                setupFiles: 'vitest.setup.ts',
                 include: ['src/**/*.test.{ts,tsx}', 'src/**/*.integration.test.tsx'],
                 exclude: ['tests/**'],
             },

@@ -1,4 +1,5 @@
 import { GeneratePage } from '@pages/Generate';
+import { useHistoryStore } from '@store/historyStore';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { historyMock } from '@tests/test-data/mocks/history';
 import { STORAGE_KEY } from '@utils/consts';
@@ -31,10 +32,15 @@ const localStorageMock = (() => {
 
 Object.defineProperty(window, 'localStorage', { value: localStorageMock });
 
+const initialHistoryState = useHistoryStore.getState();
+
 describe('Интеграционные тесты для HistoryPage', () => {
     beforeEach(() => {
         localStorageMock.clear();
         localStorageMock.setItem(STORAGE_KEY, JSON.stringify(historyMock));
+
+        // Сбрасываем состояние стора перед каждым тестом
+        useHistoryStore.setState(initialHistoryState, true);
     });
 
     it('TC-HY-001: Отображение списка записей в истории', async () => {

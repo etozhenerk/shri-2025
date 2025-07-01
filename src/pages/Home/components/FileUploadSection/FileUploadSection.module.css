@@ -1,3 +1,9 @@
+.fileUploadSection {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
 .sendButton {
     margin: 0 auto;
     width: fit-content;

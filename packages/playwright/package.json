@@ -6,5 +6,8 @@
   "scripts": {},
   "dependencies": {
     "@playwright/test": "^1.53.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.3"
   }
-} 
+}

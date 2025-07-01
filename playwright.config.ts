@@ -12,8 +12,6 @@ import { defineConfig, devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-    testDir: './tests',
-    testMatch: ['tests/**/*.spec.ts', 'tests/**/*.screenshot.spec.ts'],
     /* Run tests in files in parallel */
     fullyParallel: true,
     /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -37,7 +35,8 @@ export default defineConfig({
     projects: [
         {
             name: 'chromium',
-            testMatch: ['tests/**/*.spec.ts', 'tests/**/*.screenshot.spec.ts'],
+            testDir: './tests',
+            testMatch: ['**/*.spec.ts', '**/*.screenshot.spec.ts'],
             testIgnore: 'packages/ui-kit/src/**/*.spec.ts',
             use: { ...devices['Desktop Chrome'], viewport: { width: 1920, height: 1080 } },
         },
