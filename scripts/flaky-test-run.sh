@@ -17,4 +17,5 @@ echo "Запуск тестов, соответствующих шаблону: 
 echo "Количество повторений для каждого теста: $REPEAT_COUNT"
 echo "----------------------------------------------------"
 
-npx playwright test --grep "$TEST_PATTERN" --repeat-each "$REPEAT_COUNT" 
+# Запускаем тесты
+npx playwright test tests --grep "$TEST_PATTERN" --repeat-each "$REPEAT_COUNT" 

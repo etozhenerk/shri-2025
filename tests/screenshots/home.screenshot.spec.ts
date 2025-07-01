@@ -41,3 +41,39 @@ test('TC-HP-009: Скриншот состояния страницы с оши�
         await expect(pages.home.fileUploadSection).toHaveScreenshot('home-page-upload-section-error.png', TEST_OPTIONS);
     });
 });
+
+test('TC-HP-010: Скриншот состояния с выбранным файлом до отправки', async ({ actions, pages }) => {
+    await test.step('Шаг 1: Загрузить валидный `.csv` файл', async () => {
+        await actions.home.uploadFile('tests/test-data/test-data.csv');
+        await expect(pages.home.sendButton).toBeVisible();
+    });
+
+    await test.step('Шаг 2: Сделать и сравнить скриншот секции загрузки с выбранным файлом', async () => {
+        await expect(pages.home.fileUploadSection).toHaveScreenshot('home-page-upload-section-with-file.png', TEST_OPTIONS);
+    });
+});
+
+test('TC-HP-011: Скриншот состояния загрузки', async ({ actions, mocker, pages }) => {
+    await test.step('Шаг 1: Загрузить валидный `.csv` файл и начать обработку', async () => {
+        // Используем задержку в 1 час для имитации длительной загрузки
+        await mocker.mock('**/aggregate*', { status: 'pending' }, { delay: 3600000 });
+        await actions.home.uploadFile('tests/test-data/test-data.csv');
+        await actions.home.send();
+        await expect(pages.home.loader).toBeVisible();
+    });
+
+    await test.step('Шаг 2: Сделать и сравнить скриншот секции загрузки в процессе обработки', async () => {
+        await expect(pages.home.fileUploadSection).toHaveScreenshot('home-page-upload-section-loading.png', TEST_OPTIONS);
+    });
+});
+
+test('TC-HP-012: Скриншот состояния с неверным форматом файла', async ({ actions, pages }) => {
+    await test.step('Шаг 1: Загрузить файл неверного формата', async () => {
+        await actions.home.uploadFile('tests/test-data/invalid-file.txt');
+        await expect(pages.home.dropzoneError).toBeVisible();
+    });
+
+    await test.step('Шаг 2: Сделать и сравнить скриншот секции загрузки с ошибкой формата', async () => {
+        await expect(pages.home.fileUploadSection).toHaveScreenshot('home-page-upload-section-invalid-format.png', TEST_OPTIONS);
+    });
+});

@@ -69,8 +69,8 @@
 | `npm run test:screenshots` | Запуск скриншот-тестов |
 | `npm run test:e2e:ui` | Запуск тестов в интерактивном UI-режиме |
 | `npm run test:unit` | Запуск юнит-тестов |
-| `npm run test:flaky` | Проверка теста на нестабильность |
-| `npm run test:flaky:all` | Проверка всех тестов на нестабильность |
+| `npm run test:flaky "<pattern>" <count>` | Проверка теста на нестабильность. Запускает тест, соответствующий шаблону `pattern`, указанное количество `count` раз |
+| `npm run test:flaky:all` | Проверка всех тестов на нестабильность (20 прогонов) |
 | `npm run test:storybook` | Запуск тестов Storybook |
 | `npm run test:storybook:snapshot` | Запуск скриншот-тестов Storybook |
 | `npm run storybook` | Запуск Storybook в режиме разработки |
