@@ -77,3 +77,13 @@ test('TC-HP-012: Скриншот состояния с неверным фор�
         await expect(pages.home.fileUploadSection).toHaveScreenshot('home-page-upload-section-invalid-format.png', TEST_OPTIONS);
     });
 });
+
+test('TC-HP-013: Скриншот состояния страницы с плейсхолдером для хайлайтов', async ({ pages }) => {
+    await test.step('Шаг 1: Сделать и сравнить скриншот секции хайлайтов', async () => {
+        await expect(pages.home.highlightsPlaceholder).toBeVisible();
+        await expect(pages.home.highlightsPlaceholder).toHaveScreenshot(
+            'home-page-highlights-section-placeholder.png',
+            TEST_OPTIONS
+        );
+    });
+});

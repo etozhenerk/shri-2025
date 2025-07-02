@@ -22,7 +22,8 @@
         "test:storybook:snapshot": "npm run test:ui-snapshot -w @shri/ui-kit",
         "test:flaky": "scripts/flaky-test-run.sh",
         "test:flaky:all": "scripts/flaky-test-run-all.sh",
-        "storybook": "npm run storybook -w @shri/ui-kit"
+        "test:e2e:a11y": "playwright test tests/accessibility",
+        "storybook": "storybook dev -p 6006"
     },
     "dependencies": {
         "@reduxjs/toolkit": "^2.2.3",
@@ -55,7 +56,7 @@
         "@types/react-dom": "^18.2.21",
         "@vitejs/plugin-react": "^4.5.2",
         "@vitest/ui": "^3.2.3",
-        "axe-core": "^4.10.3",
+        "axe-playwright": "^2.1.0",
         "concurrently": "^9.1.2",
         "eslint": "^8.57.0",
         "eslint-config-prettier": "^10.1.5",
@@ -67,6 +68,7 @@
         "eslint-plugin-simple-import-sort": "^12.1.1",
         "eslint-plugin-storybook": "^0.8.0",
         "identity-obj-proxy": "^3.0.0",
+        "jest-axe": "^10.0.0",
         "jsdom": "^24.0.0",
         "npm-run-all": "^4.1.5",
         "postcss": "^8.4.38",

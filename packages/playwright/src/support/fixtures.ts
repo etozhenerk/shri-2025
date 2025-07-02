@@ -1,4 +1,6 @@
+import AxeBuilder from '@axe-core/playwright';
 import { test as base, expect } from '@playwright/test';
+import { type Result } from 'axe-core';
 
 import { actionClasses } from '../actions';
 import { mockClasses } from '../mocker';
@@ -23,7 +25,7 @@ const test = base
             { auto: true },
         ],
     })
-    .extend<MyFixtures>({
+    .extend<MyFixtures & { makeA11yScan: () => Promise<Result[]> }>({
         pages: async ({ page }, use) => {
             const pages = {
                 home: new pageClasses.home(page),
@@ -46,6 +48,15 @@ const test = base
             const mocker = new mockClasses.mocker(page);
             await use(mocker);
             await mocker.unmockAll();
+        },
+        makeA11yScan: async ({ page }, use) => {
+            const makeScan = async () => {
+                const accessibilityScanResults = await new AxeBuilder({ page })
+                    .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+                    .analyze();
+                return accessibilityScanResults.violations;
+            };
+            await use(makeScan);
         },
     });
 

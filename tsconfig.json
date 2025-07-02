@@ -13,8 +13,12 @@
             "@styles/*": ["src/styles/*"],
             "@utils/*": ["src/utils/*"],
             "@tests/*": ["tests/*"]
-        }
+        },
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noFallthroughCasesInSwitch": true,
+        "types": ["vitest/globals"]
     },
-    "include": ["src", "tests", "packages/ui-kit/src", "packages/playwright/src"],
+    "include": ["src", "packages", "tests", "vitest.setup.ts", "src/types/vitest.d.ts", "src/types/jest-axe.d.ts"],
     "references": [{ "path": "./tsconfig.node.json" }]
 }
