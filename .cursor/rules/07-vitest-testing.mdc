@@ -1,0 +1,50 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Интеграционное тестирование (Vitest + RTL)
+
+## Обязательные стандарты (MUST)
+
+- **Сброс состояния Zustand-сторов**: **MUST** сбрасывать состояние всех используемых `zustand` сторов в хуке `beforeEach` или `afterEach`. Это предотвращает "протекание" состояний между тестами и гарантирует их независимость.
+
+- **Использование `fireEvent` для загрузки файлов**: **MUST** использовать `fireEvent.change` для симуляции загрузки файлов в компоненте `Dropzone`. Это связано с тем, что `userEvent.upload` не работает корректно с нашей текущей реализацией.
+
+- **Группировка тестов в `describe`**: **MUST** группировать все тесты для одного компонента или страницы в один блок `describe`. Это обеспечивает структурную консистентность с другими типами тестов в проекте.
+
+- **Использование `MemoryRouter` для компонентов с навигацией**: **MUST** оборачивать компоненты, использующие `<Link>` или другие элементы `react-router-dom`, в `<MemoryRouter>` при рендеринге в тесте. Это необходимо для корректной работы навигационных компонентов в тестовой среде.
+
+## Примеры
+
+### Сброс состояния стора
+
+```typescript
+// ✅ Правильно
+import { analysisStore } from '@/store/analysisStore';
+
+const initialState = analysisStore.getState();
+
+beforeEach(() => {
+    analysisStore.setState(initialState);
+});
+
+test('...', () => {
+    // ...
+});
+```
+
+### Загрузка файла
+
+```typescript
+// ✅ Правильно
+import { render, screen, fireEvent } from '@testing-library/react';
+
+const fileInput = screen.getByTestId('dropzone');
+const file = new File(['(⌐□_□)'], 'chuck.csv', { type: 'text/csv' });
+fireEvent.change(fileInput, { target: { files: [file] } });
+
+// ❌ Неправильно
+// import userEvent from '@testing-library/user-event';
+// await userEvent.upload(fileInput, file);
+```

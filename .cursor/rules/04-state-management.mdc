@@ -1,0 +1,51 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Управление состоянием (Zustand / Redux)
+
+## Обязательные стандарты (MUST)
+
+- **Разделение на `slices`**: **MUST** структурировать сторы (как Zustand, так и Redux) по принципу "срезов" (slices). Каждый срез должен отвечать за свою часть состояния и находиться в отдельном файле. Это делает состояние более предсказуемым и модульным.
+
+- **Явная типизация сторов**: **MUST** полностью типизировать состояние, сеттеры и экшены. Для Zustand это означает передачу интерфейса состояния в `create<MyState>()`.
+
+- **Иммутабельность**: **MUST** обеспечить иммутабельное обновление состояния. В Zustand это достигается созданием нового объекта при вызове `set`, в Redux Toolkit за этим следит Immer "под капотом".
+
+## Примеры
+
+### Структура Zustand стора со срезами
+
+```typescript
+// ✅ Правильно: store/analysis/slices/file.slice.ts
+import type { StateCreator } from 'zustand';
+import type { AnalysisState } from '../types';
+
+export interface FileSlice {
+  file: File | null;
+  setFile: (file: File | null) => void;
+}
+
+export const createFileSlice: StateCreator<
+  AnalysisState,
+  [],
+  [],
+  FileSlice
+> = (set) => ({
+  file: null,
+  setFile: (file) => set({ file }),
+});
+
+// ✅ Правильно: store/analysis/analysisStore.ts
+import { create } from 'zustand';
+import { createFileSlice, FileSlice } from './slices/file.slice';
+// ... другие срезы
+
+type AnalysisState = FileSlice & ReportSlice; // & ...
+
+export const useAnalysisStore = create<AnalysisState>()((...a) => ({
+  ...createFileSlice(...a),
+  // ... другие срезы
+}));
+```

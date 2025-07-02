@@ -1,0 +1,60 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# API-клиент
+
+## Рекомендации (SHOULD)
+
+- **Изоляция логики API**: **SHOULD** инкапсулировать всю логику взаимодействия с API (формирование запросов, обработка ответов и ошибок) в выделенном слое `src/api`. Компоненты и хуки не должны напрямую использовать `fetch` или другие HTTP-клиенты.
+
+- **Разделение по ресурсам**: **SHOULD** разделять API-клиент на модули, соответствующие ресурсам API (например, `analysis.ts`, `report.ts`).
+
+- **Обработка ошибок**: **SHOULD** предоставлять централизованный механизм обработки ошибок API, чтобы избежать дублирования кода `try/catch` в разных частях приложения.
+
+## Примеры
+
+### Структура API-клиента
+
+```typescript
+// ✅ Правильно: src/api/analysis.ts
+
+// Функция, инкапсулирующая логику запроса
+export async function runAnalysis(file: File): Promise<AnalysisResult> {
+  const formData = new FormData();
+  formData.append('file', file);
+
+  const response = await fetch('/api/analysis', {
+    method: 'POST',
+    body: formData,
+  });
+
+  if (!response.ok) {
+    // Централизованная обработка ошибок
+    throw new Error('Analysis failed');
+  }
+
+  return response.json();
+}
+
+// ✅ Правильно: хук, использующий API-клиент
+// src/hooks/use-csv-analysis.ts
+import { runAnalysis } from '@/api/analysis';
+
+function useCsvAnalysis() {
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+
+  const analyze = async (file: File) => {
+    try {
+      const result = await runAnalysis(file);
+      setData(result);
+    } catch (e) {
+      setError(e);
+    }
+  };
+
+  return { data, error, analyze };
+}
+```

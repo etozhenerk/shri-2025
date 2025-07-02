@@ -1,0 +1,34 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Стилизация (CSS Modules)
+
+## Обязательные стандарты (MUST)
+
+- **Запрет глобальных селекторов**: **MUST NOT** использовать глобальные селекторы (например, `div`, `.button`) внутри `*.module.css` файлов. Все стили должны быть привязаны к классам. Для глобальных стилей используйте файл `src/styles/global.css`.
+
+- **Именование классов**: **MUST** именовать классы в `camelCase`. Это соответствует стилю JavaScript и упрощает их использование в компонентах.
+
+## Рекомендации (SHOULD)
+
+- **Использование `classnames`**: **SHOULD** использовать утилиту `classnames` для условного применения нескольких классов. Это делает код более читаемым, чем шаблонные строки.
+
+## Примеры
+
+### Использование `classnames`
+
+```typescript
+// ✅ Правильно
+import cn from 'classnames';
+import styles from './Button.module.css';
+
+const buttonClasses = cn(styles.button, {
+  [styles.primary]: variant === 'primary',
+  [styles.disabled]: disabled,
+});
+
+// ❌ Неправильно
+const buttonClasses = `${styles.button} ${variant === 'primary' ? styles.primary : ''} ${disabled ? styles.disabled : ''}`;
+```

@@ -1,0 +1,47 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Правила TypeScript
+
+## Обязательные стандарты (MUST)
+
+- **Запрет `any`**: **MUST NOT** использовать тип `any`. Если тип действительно неизвестен, следует использовать `unknown` и выполнять сужение типов (type narrowing).
+
+- **Явное определение возвращаемого типа**: **MUST** явно указывать тип возвращаемого значения для всех функций и методов, кроме самых очевидных случаев (например, в `onClick` обработчиках). Это улучшает читаемость и помогает TypeScript быстрее находить ошибки.
+
+- **Использование `interface` для публичных API**: **MUST** использовать `interface` для определения "формы" объектов, особенно для пропсов компонентов и публичных API. `type` следует использовать для примитивов, объединений (unions), пересечений (intersections) и более сложных конструкций.
+
+## Рекомендации (SHOULD)
+
+- **Использование `Readonly`**: **SHOULD** помечать пропсы и состояния, которые не должны изменяться, как `Readonly<...>` или использовать `as const`. Это помогает предотвратить случайные мутации.
+
+## Примеры
+
+### Явный `return` тип
+
+```typescript
+// ✅ Правильно
+export const getAnalysisData = (id: string): Promise<AnalysisResult> => {
+  // ...
+};
+
+// ❌ Неправильно
+export const getAnalysisData = (id: string) => { // Возвращаемый тип не указан
+  // ...
+};
+```
+
+### `interface` vs `type`
+
+```typescript
+// ✅ Правильно: interface для пропсов
+export interface HistoryItemProps {
+  item: HistoryEntry;
+  onSelect: (id: string) => void;
+}
+
+// ✅ Правильно: type для объединения
+export type Status = 'loading' | 'success' | 'error';
+```

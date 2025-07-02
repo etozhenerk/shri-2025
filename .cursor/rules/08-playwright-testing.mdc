@@ -1,0 +1,54 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# E2E и Скриншот-тестирование (Playwright)
+
+## Обязательные стандарты (MUST)
+
+- **Запрет `test.describe`**: **MUST NOT** использовать `describe` или `test.describe` в Playwright тестах. Необходимо поддерживать плоскую структуру файлов для консистентности.
+
+- **Использование кастомных фикстур**: **MUST** использовать кастомные фикстуры (`pages`, `actions`, `mocker`) из пакета `@shri/playwright`. Нельзя напрямую импортировать Page Objects или создавать свои экземпляры. Это обеспечивает чистоту кода и централизованное управление.
+
+- **Мокирование API**: **MUST** мокировать все API-запросы с помощью фикстуры `mocker`. Тесты не должны зависеть от реального бэкенда.
+
+- **Скриншоты областей, а не целых страниц**: **MUST** использовать `locator.screenshot()` для создания скриншотов конкретных областей или компонентов. Скриншоты всей страницы (`page.screenshot({ fullPage: true })`) запрещены, так как они слишком хрупкие и часто ломаются из-за незначительных изменений в общих компонентах (например, `Header`).
+
+## Рекомендации (SHOULD)
+
+- **Декларативный стиль**: **SHOULD** писать тесты в декларативном стиле, используя `actions` для выполнения сложных пользовательских сценариев. Тест должен описывать *что* происходит, а не *как*.
+
+## Примеры
+
+### Структура теста и использование фикстур
+
+```typescript
+// ✅ Правильно
+import { test, expect } from '@shri/playwright';
+
+// Плоская структура, без describe
+test('Пользователь может загрузить валидный файл', async ({ page, pages, actions, mocker }) => {
+  // Arrange
+  await mocker.mock('analysis-success');
+  await actions.home.open();
+
+  // Act
+  await actions.home.uploadFile('test-data.csv');
+
+  // Assert
+  await expect(pages.homePage.getHighlightsSection()).toBeVisible();
+});
+```
+
+### Скриншот-тестирование
+
+```typescript
+// ✅ Правильно: скриншот конкретного локатора
+const highlightsSection = pages.homePage.getHighlightsSection();
+await expect(highlightsSection).toHaveScreenshot('highlights.png');
+
+
+// ❌ Неправильно: скриншот всей страницы
+await expect(page).toHaveScreenshot('full-page.png');
+```

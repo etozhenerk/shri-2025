@@ -1,0 +1,56 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Общие стандарты кодирования
+
+## Обязательные стандарты (MUST)
+
+- **Структура `index.ts`**: **MUST** использовать `index.ts` (barrel files) для экспорта из директорий, содержащих несколько связанных модулей (например, компоненты, иконки, actions). Это упрощает импорты в других частях приложения.
+
+- **Использование псевдонимов (aliases)**: **MUST** использовать псевдонимы (`@/components`, `@/store`) для импортов вместо относительных путей (`../../../`). Это повышает читаемость и упрощает рефакторинг.
+
+- **Запрет на тип `any`**: **MUST NOT** использовать тип `any`. Весь код должен быть строго типизирован.
+
+- **Паттерн AAA в тестах**: **MUST** структурировать все тесты (юнит, интеграционные, E2E) по паттерну Arrange-Act-Assert. Блоки должны быть визуально разделены пустыми строками для лучшей читаемости.
+
+## Рекомендации (SHOULD)
+
+- **Именование файлов**: **SHOULD** следовать принятым конвенциям: `PascalCase` для компонентов (`Button.tsx`), `camelCase` для хуков и утилит (`useDebounce.ts`), `ComponentName.module.css` для стилей.
+
+- **Расположение тестов**: **SHOULD** размещать юнит- и интеграционные тесты в директории `__tests__` рядом с тестируемым файлом.
+
+## Примеры
+
+### Использование `index.ts`
+
+```typescript
+// ✅ Правильно: packages/ui-kit/src/components/Button/index.ts
+export * from './Button';
+
+// ✅ Правильно: импорт в другом файле
+import { Button } from '@/components/Button';
+
+// ❌ Неправильно: прямой импорт, минуя barrel file
+import { Button } from '@/components/Button/Button';
+```
+
+### Паттерн AAA в тесте
+
+```typescript
+// ✅ Правильно
+test('should do something', () => {
+  // Arrange
+  const { result } = renderHook(() => useMyHook());
+  const mockData = { id: 1, name: 'test' };
+
+  // Act
+  act(() => {
+    result.current.processData(mockData);
+  });
+
+  // Assert
+  expect(result.current.data).toEqual({ ...mockData, processed: true });
+});
+```

@@ -1,0 +1,42 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Анти-паттерны проекта
+
+## Обязательные стандарты (MUST NOT)
+
+- **Глобальный сброс состояния сторов**: **MUST NOT** сбрасывать состояние `zustand`-сторов глобально (например, в `vitest.setup.ts`). Это может привести к проблемам с разрешением путей и зависимостей. Сброс состояния должен происходить локально в `beforeEach` каждого тестового файла, которому это необходимо.
+
+- **Скриншоты целых страниц**: **MUST NOT** делать скриншоты всей страницы в Playwright-тестах (`page.screenshot({ fullPage: true })`). Этот подход слишком хрупкий. Вместо этого следует использовать `locator.screenshot()` для тестирования конкретных, изолированных областей.
+
+- **Использование `test.describe` в Playwright**: **MUST NOT** использовать `test.describe`. Все E2E-тесты должны иметь плоскую структуру для единообразия.
+
+- **Прямое управление `localStorage` в тестах**: **MUST NOT** мокировать или напрямую изменять `localStorage` в Playwright-тестах. Для управления состоянием следует использовать специальные `actions`, которые инкапсулируют эту логику.
+
+- **Использование `userEvent.upload`**: **MUST NOT** использовать `userEvent.upload` из-fза несовместимости с компонентом `Dropzone`. Для симуляции загрузки файлов следует использовать `fireEvent.change`.
+
+## Примеры
+
+### Сброс состояния сторов
+
+```typescript
+// ❌ Неправильно: в vitest.setup.ts
+import { analysisStore } from './src/store/analysisStore';
+
+afterEach(() => {
+  // Этот подход может вызвать проблемы
+  analysisStore.setState(analysisStore.getInitialState());
+});
+
+// ✅ Правильно: в конкретном файле теста
+// src/pages/Generate/__tests__/GeneratePage.integration.test.tsx
+import { analysisStore } from '@/store/analysisStore';
+
+const initialState = analysisStore.getState();
+
+beforeEach(() => {
+    analysisStore.setState(initialState);
+});
+```
