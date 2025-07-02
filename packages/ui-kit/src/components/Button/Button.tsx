@@ -2,8 +2,8 @@ import { FC, PropsWithChildren, ButtonHTMLAttributes } from 'react';
 
 import cn from 'classnames';
 
+import { WithTestId } from '../../types/common';
 import { Loader } from '../Loader';
-import { WithTestId } from '../types/common';
 
 import styles from './Button.module.css';
 
@@ -15,6 +15,7 @@ type Props = PropsWithChildren &
         variant?: Variant;
         fullWidth?: boolean;
         isLoading?: boolean;
+        'aria-label'?: string;
     };
 
 export const Button: FC<Props> = ({
@@ -40,6 +41,8 @@ export const Button: FC<Props> = ({
             )}
             disabled={disabled || isLoading}
             data-testid={testId || 'ui-button'}
+            aria-busy={isLoading}
+            aria-live="polite"
             {...rest}
         >
             {isLoading ? <Loader size={20} /> : children}

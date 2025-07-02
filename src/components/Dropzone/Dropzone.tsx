@@ -110,6 +110,16 @@ export const Dropzone: FC<Props> = ({ file, status, error, onFileSelect, onClear
         }
     }, [file, isProcessing]);
 
+    const handleKeyDown = useCallback(
+        (e: React.KeyboardEvent) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                handleZoneClick();
+            }
+        },
+        [handleZoneClick]
+    );
+
     const renderContent = () => {
         if (isProcessing) {
             return (
@@ -178,9 +188,10 @@ export const Dropzone: FC<Props> = ({ file, status, error, onFileSelect, onClear
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
             onClick={handleZoneClick}
-            role="button"
+            onKeyDown={handleKeyDown}
             tabIndex={0}
             data-testid="dropzone"
+            aria-label="Загрузка CSV файла"
         >
             <input
                 type="file"
@@ -191,7 +202,7 @@ export const Dropzone: FC<Props> = ({ file, status, error, onFileSelect, onClear
                 data-testid="dropzone-input"
             />
             <div data-testid="dropzone-content">{renderContent()}</div>
-            <Typography size="l" data-testid="dropzone-status">
+            <Typography size="l" data-testid="dropzone-status" aria-live="assertive">
                 {renderStatusText()}
             </Typography>
         </div>

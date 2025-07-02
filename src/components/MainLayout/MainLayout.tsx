@@ -6,8 +6,11 @@ import styles from './MainLayout.module.css';
 export const MainLayout = () => {
     return (
         <div className={styles.layout}>
+            <a href="#main-content" className="skip-link">
+                Перейти к основному содержимому
+            </a>
             <Header />
-            <main className={styles.main}>
+            <main id="main-content" className={styles.main}>
                 <Outlet />
             </main>
         </div>

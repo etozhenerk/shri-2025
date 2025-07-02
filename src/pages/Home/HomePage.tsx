@@ -54,21 +54,25 @@ export const HomePage = () => {
     };
 
     return (
-        <div className={styles.container} data-testid="home-page">
+        <section className={styles.container} data-testid="home-page">
             <Typography as="h1" size="m" className={styles.title}>
                 Загрузите <b>csv</b> файл и <b>получите полную</b> информацию о нём за сверхнизкое время
             </Typography>
-
-            <FileUploadSection
-                file={file}
-                status={status}
-                error={error}
-                onFileSelect={handleFileSelect}
-                onSend={handleSend}
-                onClear={reset}
-            />
-
-            <HighlightsSection highlights={highlights} />
-        </div>
+            <section>
+                <h2 className="visually-hidden">Загрузка и анализ файла</h2>
+                <FileUploadSection
+                    file={file}
+                    status={status}
+                    error={error}
+                    onFileSelect={handleFileSelect}
+                    onSend={handleSend}
+                    onClear={reset}
+                />
+            </section>
+            <section>
+                <h2 className="visually-hidden">Результаты анализа</h2>
+                <HighlightsSection highlights={highlights} />
+            </section>
+        </section>
     );
 };

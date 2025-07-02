@@ -2,7 +2,7 @@ import { PropsWithChildren } from 'react';
 
 import cn from 'classnames';
 
-import { WithClassName, WithTestId } from '../types/common';
+import { WithClassName, WithTestId } from '../../types/common';
 
 import styles from './Typography.module.css';
 
@@ -15,6 +15,10 @@ type Props = PropsWithChildren &
         weight?: 'light' | 'regular' | 'medium' | 'bold' | 'extrabold';
         style?: 'normal' | 'italic';
         maxRowsNumber?: number;
+        'aria-live'?: 'off' | 'polite' | 'assertive';
+        'aria-label'?: string;
+        'aria-labelledby'?: string;
+        'aria-describedby'?: string;
     };
 
 export const Typography = ({
@@ -27,6 +31,10 @@ export const Typography = ({
     maxRowsNumber,
     className,
     'data-testid': testId,
+    'aria-live': ariaLive,
+    'aria-label': ariaLabel,
+    'aria-labelledby': ariaLabelledby,
+    'aria-describedby': ariaDescribedby,
 }: Props) => {
     const lineClampStyle = maxRowsNumber
         ? {
@@ -46,6 +54,10 @@ export const Typography = ({
             )}
             style={{ ...lineClampStyle }}
             data-testid={testId}
+            aria-live={ariaLive}
+            aria-label={ariaLabel}
+            aria-labelledby={ariaLabelledby}
+            aria-describedby={ariaDescribedby}
         >
             {children}
         </Component>
