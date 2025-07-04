@@ -25,7 +25,7 @@ interface UseDebounceOptions {
 export const useDebounce = function <TArgs extends unknown[], TResult>(
     fn: (...args: TArgs) => TResult,
     options: UseDebounceOptions = {}
-) {
+): ((...args: TArgs) => void) {
     const { type = 'animation', delay = 100 } = options;
 
     const state = useRef({
@@ -34,7 +34,7 @@ export const useDebounce = function <TArgs extends unknown[], TResult>(
         timeoutId: null as ReturnType<typeof setTimeout> | null,
     });
 
-    const run = () => {
+    const run = (): void => {
         if (state.current.queue.length === 0) {
             state.current.isUpdating = false;
             return;
@@ -56,7 +56,7 @@ export const useDebounce = function <TArgs extends unknown[], TResult>(
         }
     };
 
-    return (...args: Parameters<typeof fn>) => {
+    return (...args: Parameters<typeof fn>): void => {
         state.current.queue.push(args);
 
         if (!state.current.isUpdating) {

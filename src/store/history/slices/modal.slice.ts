@@ -1,6 +1,5 @@
+import { HistoryState, IModalSlice } from '@store/history/types';
 import { StateCreator } from 'zustand';
-
-import { HistoryState, IModalSlice } from '../types';
 
 type ModalSliceCreator = StateCreator<HistoryState, [['zustand/devtools', never]], [], IModalSlice>;
 

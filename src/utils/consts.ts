@@ -1,4 +1,4 @@
-export const STORAGE_KEY = 'tableHistory';
+export const STORAGE_KEY = import.meta.env.VITE_STORAGE_KEY || 'tableHistory';
 
 export const API_HOST = process.env.API_HOST;
 

@@ -1,7 +1,6 @@
 import { AnalysisHighlight } from '@app-types/analysis';
+import { Highlights } from '@app-types/common';
 import { HIGHLIGHT_TITLES } from '@utils/consts';
-
-import { Highlights } from '../types/common';
 
 /**
  * Кастомная ошибка для некорректных ответов сервера
@@ -74,7 +73,7 @@ export const isCsvFile = (file: File): boolean => {
  * @param rawData - Сырые данные от сервера
  * @returns true, если ответ валидный, иначе false
  */
-export const validateServerResponse = (rawData: Record<string, string | number>) => {
+export const validateServerResponse = (rawData: Record<string, string | number>): boolean => {
     const validHighlightKeys = Object.keys(HIGHLIGHT_TITLES);
     const responseHighlightKeys = Object.keys(rawData);
 

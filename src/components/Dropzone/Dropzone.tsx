@@ -1,13 +1,12 @@
 import { FC, useRef, useState, useCallback } from 'react';
 
 import { AnalysisStatus } from '@app-types/analysis';
+import { FileDisplay } from '@components/FileDisplay';
 import { Button } from '@shri/ui-kit/components/Button';
 import { Loader } from '@shri/ui-kit/components/Loader';
 import { Typography } from '@shri/ui-kit/components/Typography';
 import { isCsvFile } from '@utils/analysis';
 import cn from 'classnames';
-
-import { FileDisplay } from '../FileDisplay';
 
 import styles from './Dropzone.module.css';
 
@@ -189,7 +188,6 @@ export const Dropzone: FC<Props> = ({ file, status, error, onFileSelect, onClear
             onDrop={handleDrop}
             onClick={handleZoneClick}
             onKeyDown={handleKeyDown}
-            tabIndex={0}
             data-testid="dropzone"
             aria-label="Загрузка CSV файла"
         >

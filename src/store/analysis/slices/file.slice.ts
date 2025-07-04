@@ -1,6 +1,5 @@
+import { AnalysisState, IFileSlice } from '@store/analysis/types';
 import { StateCreator } from 'zustand';
-
-import { AnalysisState, IFileSlice } from '../types';
 
 // Явно определяем, что `set` может принимать имя экшена
 type FileSliceCreator = StateCreator<AnalysisState, [['zustand/devtools', never]], [], IFileSlice>;

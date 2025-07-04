@@ -11,7 +11,7 @@ export const getHistory = (): HistoryItemType[] => {
     }
 };
 
-export const addToHistory = (item: Omit<HistoryItemType, 'id' | 'timestamp'>) => {
+export const addToHistory = (item: Omit<HistoryItemType, 'id' | 'timestamp'>): HistoryItemType => {
     try {
         const history = getHistory();
         const newItem: HistoryItemType = {
@@ -29,7 +29,7 @@ export const addToHistory = (item: Omit<HistoryItemType, 'id' | 'timestamp'>) =>
     }
 };
 
-export const removeFromHistory = (id: string) => {
+export const removeFromHistory = (id: string): void => {
     try {
         const history = getHistory();
         const newHistory = history.filter((item) => item.id !== id);
@@ -40,7 +40,7 @@ export const removeFromHistory = (id: string) => {
     }
 };
 
-export const clearHistory = () => {
+export const clearHistory = (): void => {
     try {
         localStorage.removeItem(STORAGE_KEY);
     } catch (error) {

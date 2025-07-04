@@ -7,4 +7,4 @@ import { devtools } from 'zustand/middleware';
 export const reduxDevtools = <T>(
     f: StateCreator<T>,
     name?: string
-) => devtools(f, { name: name || 'store' }); 
+): StateCreator<T, [], [["zustand/devtools", never]]> => devtools(f, { name: name || 'store' }); 

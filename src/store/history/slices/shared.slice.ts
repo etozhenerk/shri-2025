@@ -1,6 +1,5 @@
+import { HistoryState, ISharedSlice } from '@store/history/types';
 import { StateCreator } from 'zustand';
-
-import { HistoryState, ISharedSlice } from '../types';
 
 type SharedSliceCreator = StateCreator<HistoryState, [['zustand/devtools', never]], [], ISharedSlice>;
 

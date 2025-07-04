@@ -2,7 +2,7 @@ import { type Page } from '@playwright/test';
 
 import { type Pages } from '../support/types';
 
-const STORAGE_KEY = 'tableHistory';
+const STORAGE_KEY = process.env.VITE_STORAGE_KEY || 'tableHistory';
 
 export class HistoryActions {
     readonly page: Page;

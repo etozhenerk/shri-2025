@@ -1,7 +1,6 @@
+import { logger } from '@store/middlewares/logger';
 import { StateCreator } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
-
-import { logger } from '../middlewares/logger';
 
 import { historyPersistConfig } from './persist.config';
 import { HistoryState } from './types';

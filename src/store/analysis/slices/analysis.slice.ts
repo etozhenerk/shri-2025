@@ -1,6 +1,5 @@
+import { AnalysisState, IAnalysisSlice } from '@store/analysis/types';
 import { StateCreator } from 'zustand';
-
-import { AnalysisState, IAnalysisSlice } from '../types';
 
 type AnalysisSliceCreator = StateCreator<AnalysisState, [['zustand/devtools', never]], [], IAnalysisSlice>;
 

@@ -1,8 +1,7 @@
 import { HistoryItemType } from '@app-types/history';
+import { HistoryState, IHistorySlice } from '@store/history/types';
 import { getHistory } from '@utils/storage';
 import { StateCreator } from 'zustand';
-
-import { HistoryState, IHistorySlice } from '../types';
 
 type HistorySliceCreator = StateCreator<HistoryState, [['zustand/devtools', never]], [], IHistorySlice>;
 

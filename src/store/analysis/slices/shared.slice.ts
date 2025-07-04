@@ -1,6 +1,5 @@
+import { AnalysisState, ISharedSlice } from '@store/analysis/types';
 import { StateCreator } from 'zustand';
-
-import { AnalysisState, ISharedSlice } from '../types';
 
 type SharedSliceCreator = StateCreator<AnalysisState, [['zustand/devtools', never]], [], ISharedSlice>;
 

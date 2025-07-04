@@ -8,7 +8,7 @@
   "scripts": {
     "storybook": "storybook dev -p 6006 --config-dir .storybook",
     "build-storybook": "storybook build --config-dir .storybook",
-    "test:storybook": "concurrently -k \"npm run storybook\" \"wait-on tcp:6006 && test-storybook --url http://localhost:6006\"",
+    "test:storybook": "concurrently -k \"npm run storybook -- --ci\" \"wait-on tcp:6006 && test-storybook --url http://localhost:6006 --ci\"",
     "test:ui-snapshot": "concurrently -k -s first -n \"SB,TEST\" \"npm run storybook -- --ci\" \"wait-on tcp:6006 && playwright test --config ../../playwright.config.ts --project=ui-snapshot\"",
     "test:ui-snapshot:update": "concurrently -k -s first -n \"SB,TEST\" \"npm run storybook -- --ci\" \"wait-on tcp:6006 && playwright test --config ../../playwright.config.ts --project=ui-snapshot --update-snapshots\""
   },

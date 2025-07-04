@@ -20,3 +20,14 @@
 .active::after {
     width: 100%;
 }
+
+/* Focus visibility для доступности */
+.root:focus-visible {
+    outline: 3px solid var(--color-accent-purple);
+    outline-offset: 3px;
+    border-radius: var(--border-radius-xs);
+}
+
+.root:focus:not(:focus-visible) {
+    outline: none;
+}

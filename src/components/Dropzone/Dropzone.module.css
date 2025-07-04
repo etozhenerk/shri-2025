@@ -31,3 +31,13 @@
     align-items: center;
     gap: 12px;
 }
+
+/* Focus visibility для доступности */
+.dropzone:focus-visible {
+    outline: 3px solid var(--color-accent-purple);
+    outline-offset: 3px;
+}
+
+.dropzone:focus:not(:focus-visible) {
+    outline: none;
+}
