@@ -11,4 +11,12 @@ export class StorybookPage {
         // Ищем компонент по его data-testid внутри iframe Storybook
         return this.page.locator('#storybook-root');
     }
+
+    public get modal() {
+        return this.page.getByTestId('modal');
+    }
+
+    public get openModalButton() {
+        return this.page.getByRole('button', { name: 'Open Modal' });
+    }
 }

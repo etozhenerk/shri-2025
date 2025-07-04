@@ -13,7 +13,7 @@ describe('Доступность компонента Button', () => {
     const results = await axe(container);
 
     // Assert
-    expect(results).toHaveNoViolations();
+    expect(results.violations.length).toBe(0);
   });
 
   test('не должен иметь нарушений доступности для неактивного варианта', async () => {
@@ -24,6 +24,6 @@ describe('Доступность компонента Button', () => {
     const results = await axe(container);
 
     // Assert
-    expect(results).toHaveNoViolations();
+    expect(results.violations.length).toBe(0);
   });
 }); 
