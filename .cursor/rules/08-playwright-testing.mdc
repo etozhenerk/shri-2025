@@ -17,9 +17,19 @@ alwaysApply: true
 
 - **Скриншоты областей, а не целых страниц**: **MUST** использовать `locator.screenshot()` для создания скриншотов конкретных областей или компонентов. Скриншоты всей страницы (`page.screenshot({ fullPage: true })`) запрещены, так как они слишком хрупкие и часто ломаются из-за незначительных изменений в общих компонентах (например, `Header`).
 
+- **Форматирование шагов**: **MUST** отделять блок с действиями от блока с проверками одной пустой строкой внутри `test.step`.
+
+- **Работа с локаторами**: **MUST** получать все локаторы из Page Objects. Использование "голых" локаторов (`page.getByTestId(...)`) запрещено.
+
+- **Предусловия в тест-кейсах**: **MUST** записывать предусловия о нахождении на странице в формате: `Пользователь находится на странице "Имя страницы" ('/url')`.
+
 ## Рекомендации (SHOULD)
 
 - **Декларативный стиль**: **SHOULD** писать тесты в декларативном стиле, используя `actions` для выполнения сложных пользовательских сценариев. Тест должен описывать *что* происходит, а не *как*.
+
+- **Стратегия скриншот-тестирования**: **SHOULD** применять принцип "от страниц к областям" - делать несколько маленьких, сфокусированных снимков ключевых частей страницы вместо одного большого снимка всей страницы. Это повышает стабильность и точность тестов.
+
+- **Исключения для скриншотов**: **SHOULD** делать скриншоты всей страницы только в редких случаях, когда состояние относится ко всей странице (например, "пустая страница истории").
 
 ## Примеры
 
@@ -50,7 +60,40 @@ test('Пользователь может загрузить валидный ф
 const highlightsSection = pages.homePage.getHighlightsSection();
 await expect(highlightsSection).toHaveScreenshot('highlights.png');
 
+// ✅ Правильно: несколько снимков ключевых областей
+await expect(pages.homePage.getFileUploadSection()).toHaveScreenshot('upload-section.png');
+await expect(pages.homePage.getHighlightsSection()).toHaveScreenshot('highlights-section.png');
 
 // ❌ Неправильно: скриншот всей страницы
 await expect(page).toHaveScreenshot('full-page.png');
+```
+
+### Форматирование шагов
+
+```typescript
+// ✅ Правильно: отделение действий от проверок
+test.step('Шаг 1: Загрузка файла и проверка отображения', async () => {
+  await actions.home.uploadFile('test-data.csv');
+  
+  await expect(pages.homePage.getFileName()).toBeVisible();
+  await expect(pages.homePage.getFileStatus()).toHaveText('Готов к обработке');
+});
+
+// ❌ Неправильно: без разделения
+test.step('Шаг 1: Загрузка файла и проверка отображения', async () => {
+  await actions.home.uploadFile('test-data.csv');
+  await expect(pages.homePage.getFileName()).toBeVisible();
+  await expect(pages.homePage.getFileStatus()).toHaveText('Готов к обработке');
+});
+```
+
+### Работа с локаторами
+
+```typescript
+// ✅ Правильно: использование Page Objects
+const fileInput = pages.homePage.getFileInput();
+await expect(fileInput).toBeVisible();
+
+// ❌ Неправильно: "голые" локаторы
+await expect(page.getByTestId('file-input')).toBeVisible();
 ```

@@ -13,7 +13,7 @@
         "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
         "lint:fix": "eslint . --fix",
         "format": "prettier --write .",
-        "test": "npm run test:unit && npm run test:functional && npm run test:screenshots",
+        "test": "npm run test:unit && npm run test:functional && npm run test:screenshots && npm run test:e2e:a11y",
         "test:functional": "playwright test tests/functional/",
         "test:screenshots": "playwright test tests/screenshots/",
         "test:unit": "vitest run",
