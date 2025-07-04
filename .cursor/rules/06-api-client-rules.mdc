@@ -1,6 +1,6 @@
 ---
-description: 
-globs: 
+description: "API-клиент: изоляция логики, разделение по ресурсам, централизованная обработка ошибок"
+globs: "src/api/**/*"
 alwaysApply: true
 ---
 # API-клиент

@@ -1,6 +1,6 @@
 ---
-description: 
-globs: 
+description: "Интеграционное тестирование с Vitest: сброс состояния сторов, fireEvent для файлов, MemoryRouter"
+globs: "**/*.integration.test.tsx"
 alwaysApply: true
 ---
 # Интеграционное тестирование (Vitest + RTL)

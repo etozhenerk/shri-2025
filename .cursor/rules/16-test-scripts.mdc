@@ -1,5 +1,5 @@
 ---
-description: 
+description: "Доступные тестовые скрипты: функциональные, скриншот-тесты, UI-режим, flaky-тесты"
 globs: 
 alwaysApply: false
 ---

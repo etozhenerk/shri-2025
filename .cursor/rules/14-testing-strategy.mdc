@@ -1,5 +1,5 @@
 ---
-description: 
+description: "Стратегия тестирования: выбор типа тестов, Documentation-First процесс, именование шагов"
 globs: 
 alwaysApply: true
 ---

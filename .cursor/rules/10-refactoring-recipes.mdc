@@ -1,5 +1,5 @@
 ---
-description: 
+description: "Рецепты рефакторинга: преобразование E2E тестов в интеграционные"
 globs: 
 alwaysApply: true
 ---

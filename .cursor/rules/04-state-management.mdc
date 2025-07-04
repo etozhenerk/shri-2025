@@ -1,6 +1,6 @@
 ---
-description: 
-globs: 
+description: "Управление состоянием через Zustand: структура слайсов, типизация, иммутабельность"
+globs: "src/store/**/*"
 alwaysApply: true
 ---
 # Управление состоянием (Zustand / Redux)

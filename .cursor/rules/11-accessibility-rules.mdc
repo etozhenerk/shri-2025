@@ -1,6 +1,6 @@
 ---
-description: 
-globs: *.tsx
+description: "Стандарты доступности: семантическая разметка, skip-links, поддержка клавиатуры, ARIA"
+globs: "*.tsx"
 alwaysApply: false
 ---
 # Стандарты доступности (a11y)

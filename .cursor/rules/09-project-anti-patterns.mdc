@@ -1,5 +1,5 @@
 ---
-description: 
+description: "Анти-паттерны проекта: запрет глобального сброса сторов, скриншотов страниц, userEvent.upload"
 globs: 
 alwaysApply: true
 ---

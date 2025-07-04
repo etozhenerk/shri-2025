@@ -1,6 +1,6 @@
 ---
-description: 
-globs: docs/*
+description: "Правила документирования тестов: Documentation-First процесс, форматы сценариев и тест-кейсов"
+globs: "docs/*"
 alwaysApply: false
 ---
 # Правила документирования тестов

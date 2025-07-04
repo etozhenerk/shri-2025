@@ -1,6 +1,6 @@
 ---
-description: 
-globs: 
+description: "Правила TypeScript: запрет any, явные типы возвращаемых значений, interface vs type"
+globs: "*.ts, *.tsx"
 alwaysApply: true
 ---
 # Правила TypeScript

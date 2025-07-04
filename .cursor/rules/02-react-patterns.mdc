@@ -1,6 +1,6 @@
 ---
-description: 
-globs: 
+description: "Паттерны React-компонентов: явная типизация children, уникальные keys, декомпозиция и хуки"
+globs: "*.tsx"
 alwaysApply: true
 ---
 # Паттерны React-компонентов

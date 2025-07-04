@@ -1,6 +1,6 @@
 ---
-description: 
-globs: 
+description: "CSS Modules: запрет глобальных селекторов, camelCase классы, использование classnames"
+globs: "*.module.css"
 alwaysApply: true
 ---
 # Стилизация (CSS Modules)

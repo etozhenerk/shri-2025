@@ -1,6 +1,6 @@
 ---
-description: 
-globs: 
+description: "Ограничения на зависимости: только Vitest, согласованность со стеком, минимизация зависимостей"
+globs: "package.json"
 alwaysApply: false
 ---
 # Ограничения на зависимости

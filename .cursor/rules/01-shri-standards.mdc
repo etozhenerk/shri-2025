@@ -1,5 +1,5 @@
 ---
-description: 
+description: "Общие стандарты кодирования: структура index.ts, псевдонимы, типизация и паттерн AAA в тестах"
 globs: 
 alwaysApply: true
 ---

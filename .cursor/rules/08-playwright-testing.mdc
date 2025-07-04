@@ -1,6 +1,6 @@
 ---
-description: 
-globs: 
+description: "E2E тестирование с Playwright: документирование, фикстуры, скриншоты областей, плоская структура"
+globs: "tests/**/*.spec.ts"
 alwaysApply: true
 ---
 # E2E и Скриншот-тестирование (Playwright)
