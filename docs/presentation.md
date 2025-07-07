@@ -212,72 +212,52 @@ test('TC-HP-001: Успешная загрузка и обработка CSV ф�
 ```mermaid
 %%{init: {'theme':'base', 'themeVariables': { 'fontSize': '18px', 'fontFamily': 'Arial', 'primaryColor': '#ffffff', 'primaryTextColor': '#000000'}}}%%
 graph TD
-    subgraph "🏠 Home Page - 13 тест-кейсов"
-        HP1["🔴 TC-HP-001: E2E кнопка загрузки"]
-        HP2["🔴 TC-HP-002: E2E drag & drop"]
-        HP3["🔵 TC-HP-003: INT неверный формат"]
-        HP4["🔵 TC-HP-004: INT кнопка неактивна"]
-        HP5["🔵 TC-HP-005: INT серверная ошибка"]
-        HP6["🔵 TC-HP-006: INT сброс файла"]
-        HP7["🟢 TC-HP-007-013: SCREENSHOT 7 состояний"]
-    end
+    A["📊 Всего тестов: 115"] --> B["🏠 Home Page<br/>13 тест-кейсов"]
+    A --> C["📄 Generate Page<br/>6 тест-кейсов"]
+    A --> D["📋 History Page<br/>10 тест-кейсов"]
+    A --> E["🎨 UI Components<br/>28 тестов"]
+    A --> F["♿ Accessibility<br/>4 теста"]
+    A --> G["⚡ Юнит-тесты<br/>39 тестов"]
     
-    subgraph "📄 Generate Page - 6 тест-кейсов"
-        GP1["🔴 TC-GP-001: E2E успешная генерация"]
-        GP2["🔵 TC-GP-002: INT ошибка генерации"]
-        GP3["🟢 TC-GP-003-006: SCREENSHOT 4 состояния"]
-    end
+    B --> B1["🔴 E2E: 2 теста"]
+    B --> B2["🔵 INT: 4 теста"]
+    B --> B3["🟢 SCREENSHOT: 7 тестов"]
     
-    subgraph "📋 History Page - 10 тест-кейсов"
-        HY1["🔵 TC-HY-001: INT список записей"]
-        HY2["🔵 TC-HY-002: INT модальное окно"]
-        HY3["🔵 TC-HY-003: INT удаление записи"]
-        HY4["🔵 TC-HY-004: INT очистка истории"]
-        HY5["🔵 TC-HY-005-007: INT логика"]
-        HY6["🟢 TC-HY-008-010: SCREENSHOT состояния"]
-    end
+    C --> C1["🔴 E2E: 1 тест"]
+    C --> C2["🔵 INT: 1 тест"]
+    C --> C3["🟢 SCREENSHOT: 4 теста"]
     
-    subgraph "🎨 UI Components - 28 тестов"
-        UI1["🟠 Button: 8 состояний"]
-        UI2["🟠 Typography: 9 состояний"]
-        UI3["🟠 Modal: 3 состояния"]
-        UI4["🟠 HighlightCard: 2 состояния"]
-        UI5["🟠 FileStatus: 2 состояния"]
-        UI6["🟠 Loader: 3 состояния"]
-        UI7["🟠 HistoryItem: 2 состояния"]
-        UI8["🟠 Icons: 2 состояния"]
-    end
+    D --> D1["🔵 INT: 7 тестов"]
+    D --> D2["🟢 SCREENSHOT: 3 теста"]
     
-    subgraph "♿ Accessibility - 4 теста"
-        A1["🟣 TC-A11Y-001: Home A11Y"]
-        A2["🟣 TC-A11Y-002: Generate A11Y"]
-        A3["🟣 TC-A11Y-003: History A11Y"]
-        A4["🟣 TC-A11Y-004: Components A11Y"]
-    end
+    E --> E1["🟠 Button: 8 тестов"]
+    E --> E2["🟠 Typography: 9 тестов"]
+    E --> E3["🟠 Другие: 11 тестов"]
     
-    subgraph "⚡ Юнит-тесты - 39 тестов"
-        UT1["⚫ API: analysis.ts - 3 теста"]
-        UT2["⚫ API: report.ts - 5 тестов"]
-        UT3["⚫ Utils: formatDate.ts - 6 тестов"]
-        UT4["⚫ Utils: persist.ts - 5 тестов"]
-        UT5["⚫ Utils: storage.ts - 8 тестов"]
-        UT6["⚫ Utils: analysis.ts - 18 тестов"]
-    end
-
+    F --> F1["🟣 Страницы: 3 теста"]
+    F --> F2["🟣 Компоненты: 1 тест"]
+    
+    G --> G1["⚫ API: 8 тестов"]
+    G --> G2["⚫ Utils: 31 тест"]
+    
     %% Стили с контрастными цветами
+    classDef main fill:#424242,stroke:#000,stroke-width:2px,color:#fff
+    classDef pages fill:#2196f3,stroke:#000,stroke-width:2px,color:#fff
     classDef e2e fill:#d81b60,stroke:#000,stroke-width:2px,color:#fff
     classDef integration fill:#1976d2,stroke:#000,stroke-width:2px,color:#fff
     classDef screenshot fill:#388e3c,stroke:#000,stroke-width:2px,color:#fff
     classDef ui fill:#f57c00,stroke:#000,stroke-width:2px,color:#fff
     classDef a11y fill:#7b1fa2,stroke:#000,stroke-width:2px,color:#fff
-    classDef unit fill:#424242,stroke:#000,stroke-width:2px,color:#fff
+    classDef unit fill:#616161,stroke:#000,stroke-width:2px,color:#fff
     
-    class HP1,HP2,GP1 e2e
-    class HP3,HP4,HP5,HP6,GP2,HY1,HY2,HY3,HY4,HY5 integration
-    class HP7,GP3,HY6 screenshot
-    class UI1,UI2,UI3,UI4,UI5,UI6,UI7,UI8 ui
-    class A1,A2,A3,A4 a11y
-    class UT1,UT2,UT3,UT4,UT5,UT6 unit
+    class A main
+    class B,C,D,E,F,G pages
+    class B1,C1 e2e
+    class B2,C2,D1 integration
+    class B3,C3,D2 screenshot
+    class E1,E2,E3 ui
+    class F1,F2 a11y
+    class G1,G2 unit
 ```
 
 **Легенда:**
@@ -1113,13 +1093,13 @@ npm run test:flaky "TC-HP-001" 10  # конкретный тест 10 раз - 5
 ### Распределение по типам
 
 ```mermaid
-%%{init: {'theme':'base', 'themeVariables': { 'fontSize': '18px', 'fontFamily': 'Arial', 'primaryColor': '#ffffff', 'primaryTextColor': '#000000'}}}%%
+%%{init: {'theme':'base', 'themeVariables': { 'fontSize': '18px', 'fontFamily': 'Arial'}}}%%
 pie title Распределение тестов по типам (115 тестов)
-    "🟠 UI компоненты" : 28
-    "🔵 Юнит+Интеграционные+A11Y" : 60
-    "🟢 Скриншотные" : 14
-    "🟣 Accessibility страниц" : 4
-    "🔴 E2E функциональные" : 3
+    "UI компоненты" : 28
+    "Юнит+Интеграционные+A11Y" : 60
+    "Скриншотные" : 14
+    "Accessibility страниц" : 4
+    "E2E функциональные" : 3
 ```
 
 ## 12. Заключение и выводы
