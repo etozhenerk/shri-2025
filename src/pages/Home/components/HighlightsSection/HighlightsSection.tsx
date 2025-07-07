@@ -27,8 +27,8 @@ export const HighlightsSection: FC<Props> = ({ highlights }) => {
 
     return (
         <div className={styles.highlightsGrid} data-testid="highlights-grid">
-            {highlights.map((highlight: AnalysisHighlight, index: number) => (
-                <HighlightCard key={index} title={highlight.title} description={highlight.description} />
+            {highlights.map((highlight: AnalysisHighlight) => (
+                <HighlightCard key={highlight.title} title={highlight.title} description={highlight.description} />
             ))}
         </div>
     );

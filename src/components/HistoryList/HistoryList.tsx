@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useCallback, useMemo } from 'react';
 
 import { HistoryItemType } from '@app-types/history';
 import { HistoryItem } from '@shri/ui-kit/components/HistoryItem';
@@ -24,31 +24,41 @@ export const HistoryList = () => {
         updateHistoryFromStorage();
     }, [updateHistoryFromStorage]);
 
-    const handleItemClick = (item: HistoryItemType) => {
+    const handleItemClick = useCallback((item: HistoryItemType) => {
         setSelectedItem(item);
         showModal();
-    };
+    }, [setSelectedItem, showModal]);
 
-    const handleDeleteItem = (id: string) => {
+    const handleDeleteItem = useCallback((id: string) => {
         removeFromHistory(id);
         removeFromHistoryStore(id);
-    };
+    }, [removeFromHistoryStore]);
+
+    // Мемоизируем обработанные данные истории с колбэками
+    const processedHistory = useMemo(() => 
+        history.map((item) => ({
+            ...item,
+            formattedDate: formatDate(item.timestamp),
+            hasHighlights: Boolean(item.highlights),
+            // Мемоизируем колбэки для каждого элемента
+            onItemClick: () => handleItemClick(item),
+            onItemDelete: () => handleDeleteItem(item.id)
+        })), 
+        [history, handleItemClick, handleDeleteItem]
+    );
 
     return (
         <div className={styles.list} data-testid="history-list">
-            {history.map((item) => {
-                const { id, fileName, timestamp, highlights } = item;
-                return (
-                    <HistoryItem
-                        key={id}
-                        fileName={fileName}
-                        date={formatDate(timestamp)}
-                        hasHighlights={Boolean(highlights)}
-                        onClick={() => handleItemClick(item)}
-                        onDelete={() => handleDeleteItem(id)}
-                    />
-                );
-            })}
+            {processedHistory.map((item) => (
+                <HistoryItem
+                    key={item.id}
+                    fileName={item.fileName}
+                    date={item.formattedDate}
+                    hasHighlights={item.hasHighlights}
+                    onClick={item.onItemClick}
+                    onDelete={item.onItemDelete}
+                />
+            ))}
         </div>
     );
 };

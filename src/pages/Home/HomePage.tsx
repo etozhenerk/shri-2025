@@ -1,8 +1,11 @@
+import { useCallback } from 'react';
+
 import { Highlights } from '@app-types/common';
 import { useCsvAnalysis } from '@hooks/use-csv-analysis';
 import { Typography } from '@shri/ui-kit/components/Typography';
 import { useAnalysisStore } from '@store/analysisStore';
 import { addToHistory } from '@utils/storage';
+import { useShallow } from 'zustand/react/shallow';
 
 import { FileUploadSection } from './components/FileUploadSection';
 import { HighlightsSection } from './components/HighlightsSection';
@@ -16,23 +19,35 @@ import styles from './HomePage.module.css';
  * @constructor
  */
 export const HomePage = () => {
-    const { file, status, highlights, error, setFile, setStatus, setHighlights, reset, setError } = useAnalysisStore();
+    const { file, status, highlights, error, setFile, setStatus, setHighlights, reset, setError } = useAnalysisStore(
+        useShallow((state) => ({
+            file: state.file,
+            status: state.status,
+            highlights: state.highlights,
+            error: state.error,
+            setFile: state.setFile,
+            setStatus: state.setStatus,
+            setHighlights: state.setHighlights,
+            reset: state.reset,
+            setError: state.setError,
+        }))
+    );
 
-    const onComplete = (highlights?: Highlights) => {
+    const onComplete = useCallback((highlights?: Highlights) => {
         setStatus('completed');
 
         if (file) {
             addToHistory({ fileName: file.name, highlights });
         }
-    };
+    }, [file, setStatus]);
 
-    const onError = (error: Error) => {
+    const onError = useCallback((error: Error) => {
         setError(error.message);
 
         if (file) {
             addToHistory({ fileName: file.name });
         }
-    };
+    }, [file, setError]);
 
     const { analyzeCsv } = useCsvAnalysis({
         onData: setHighlights,
@@ -40,18 +55,18 @@ export const HomePage = () => {
         onError,
     });
 
-    const handleFileSelect = (selectedFile: File) => {
+    const handleFileSelect = useCallback((selectedFile: File) => {
         setFile(selectedFile);
-    };
+    }, [setFile]);
 
-    const handleSend = async () => {
+    const handleSend = useCallback(async () => {
         if (!file || status === 'processing') {
             return;
         }
 
         setStatus('processing');
         await analyzeCsv(file);
-    };
+    }, [file, status, setStatus, analyzeCsv]);
 
     return (
         <section className={styles.container} data-testid="home-page">

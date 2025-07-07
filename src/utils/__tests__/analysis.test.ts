@@ -6,26 +6,92 @@ import {
     convertHighlightsToArray,
     transformAnalysisData,
     isCsvFile,
+    validateCsvFile,
     validateServerResponse,
 } from '../analysis';
 import { HIGHLIGHT_TITLES } from '../consts';
 
 describe('Утилиты для анализа данных', () => {
+    describe('validateCsvFile', () => {
+        it('должна возвращать success для валидного CSV файла', () => {
+            const csvFile = new File(['test,data'], 'test.csv', { type: 'text/csv' });
+            
+            const result = validateCsvFile(csvFile);
+            
+            expect(result.isValid).toBe(true);
+        });
+
+        it('должна возвращать ошибку для пустого файла', () => {
+            const emptyFile = new File([''], 'test.csv', { type: 'text/csv' });
+            Object.defineProperty(emptyFile, 'size', { value: 0 });
+            
+            const result = validateCsvFile(emptyFile);
+            
+            expect(result.isValid).toBe(false);
+            if (!result.isValid) {
+                expect(result.errorType).toBe('empty');
+                expect(result.message).toBe('Файл пустой или поврежден');
+            }
+        });
+
+        it('должна возвращать ошибку для файла с неправильным расширением', () => {
+            const txtFile = new File(['test,data'], 'test.txt', { type: 'text/plain' });
+            
+            const result = validateCsvFile(txtFile);
+            
+            expect(result.isValid).toBe(false);
+            if (!result.isValid) {
+                expect(result.errorType).toBe('extension');
+                expect(result.message).toBe('Можно загружать только *.csv файлы');
+            }
+        });
+
+        it('должна возвращать ошибку для файла с неподдерживаемым MIME-типом', () => {
+            const fileWithBadMime = new File(['test,data'], 'test.csv', { type: 'application/pdf' });
+            
+            const result = validateCsvFile(fileWithBadMime);
+            
+            expect(result.isValid).toBe(false);
+            if (!result.isValid) {
+                expect(result.errorType).toBe('mimeType');
+                expect(result.message).toBe('Неподдерживаемый тип файла. Загрузите корректный CSV файл');
+            }
+        });
+
+        it('должна принимать файлы с поддерживаемыми MIME-типами', () => {
+            const supportedTypes = ['text/csv', 'application/csv', 'text/plain'];
+            
+            supportedTypes.forEach(type => {
+                const csvFile = new File(['test,data'], 'test.csv', { type });
+                const result = validateCsvFile(csvFile);
+                expect(result.isValid).toBe(true);
+            });
+        });
+
+        it('должна принимать файлы без MIME-типа', () => {
+            const csvFile = new File(['test,data'], 'test.csv');
+            
+            const result = validateCsvFile(csvFile);
+            
+            expect(result.isValid).toBe(true);
+        });
+    });
+
     describe('isCsvFile', () => {
         it('должна возвращать true для файлов с расширением .csv', () => {
-            const csvFile = new File([''], 'test.csv', { type: 'text/csv' });
+            const csvFile = new File(['test'], 'test.csv', { type: 'text/csv' });
             
             expect(isCsvFile(csvFile)).toBe(true);
         });
 
         it('должна возвращать true для файлов с расширением .CSV в верхнем регистре', () => {
-            const csvFile = new File([''], 'test.CSV', { type: 'text/csv' });
+            const csvFile = new File(['test'], 'test.CSV', { type: 'text/csv' });
             
             expect(isCsvFile(csvFile)).toBe(true);
         });
 
         it('должна возвращать false для файлов с другим расширением', () => {
-            const txtFile = new File([''], 'test.txt', { type: 'text/plain' });
+            const txtFile = new File(['test'], 'test.txt', { type: 'text/plain' });
             
             expect(isCsvFile(txtFile)).toBe(false);
         });

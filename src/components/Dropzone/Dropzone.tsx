@@ -5,7 +5,7 @@ import { FileDisplay } from '@components/FileDisplay';
 import { Button } from '@shri/ui-kit/components/Button';
 import { Loader } from '@shri/ui-kit/components/Loader';
 import { Typography } from '@shri/ui-kit/components/Typography';
-import { isCsvFile } from '@utils/analysis';
+import { validateCsvFile } from '@utils/analysis';
 import cn from 'classnames';
 
 import styles from './Dropzone.module.css';
@@ -55,8 +55,10 @@ export const Dropzone: FC<Props> = ({ file, status, error, onFileSelect, onClear
     }, []);
 
     const handleFileSelect = (selectedFile: File) => {
-        if (!isCsvFile(selectedFile)) {
-            setValidationError('Можно загружать только *.csv файлы');
+        const validationResult = validateCsvFile(selectedFile);
+        
+        if (!validationResult.isValid) {
+            setValidationError(validationResult.message);
             return;
         }
 

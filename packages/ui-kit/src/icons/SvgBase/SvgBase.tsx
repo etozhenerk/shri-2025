@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { IconBaseProps } from '../types/common';
+import { IconBaseProps } from '../../types/common';
 
 export const SvgBase: FC<IconBaseProps> = ({ size, children, viewBox, ...rest }) => (
     <svg
