@@ -18,32 +18,42 @@
 - **Общие стандарты** - единые правила кодирования, линтинга и тестирования для всех пакетов
 
 ```mermaid
+%%{init: {'theme':'base', 'themeVariables': { 'fontSize': '18px', 'fontFamily': 'Arial', 'primaryColor': '#ffffff', 'primaryTextColor': '#000000'}}}%%
 graph TB
-    subgraph "Монорепозиторий SHRI 2025"
-        A[Основное приложение<br/>CSV Аналитик] --> B[packages/ui-kit<br/>UI компоненты]
-        A --> C[packages/playwright<br/>Тестовые утилиты]
-        B --> C
-        
-        subgraph "Основное приложение"
-            D[src/pages<br/>Home, Generate, History]
-            E[src/components<br/>Композитные компоненты]
-            F[src/store<br/>Zustand сторы]
-            G[src/api<br/>API клиент]
-            H[src/hooks<br/>Кастомные хуки]
-        end
-        
-        subgraph "UI-Kit"
-            I[Button, Modal, Typography<br/>Атомарные компоненты]
-            J[Storybook<br/>Визуальная разработка]
-            K[UI Tests<br/>Скриншот-тесты]
-        end
-        
-        subgraph "Playwright Utils"
-            L[Page Objects<br/>HomePage, GeneratePage]
-            M[Actions<br/>Высокоуровневые действия]
-            N[Mocker<br/>API мокирование]
-        end
+    A["📱 Основное приложение<br/>CSV Аналитик"] --> B["🎨 packages/ui-kit<br/>UI компоненты"]
+    A --> C["🧪 packages/playwright<br/>Тестовые утилиты"]
+    B --> C
+    
+    subgraph "Основное приложение"
+        D["🏠 src/pages<br/>Home, Generate, History"]
+        E["🧩 src/components<br/>Композитные компоненты"]
+        F["🏪 src/store<br/>Zustand сторы"]
+        G["🌐 src/api<br/>API клиент"]
+        H["⚡ src/hooks<br/>Кастомные хуки"]
     end
+    
+    subgraph "UI-Kit"
+        I["🔘 Button, Modal, Typography<br/>Атомарные компоненты"]
+        J["📚 Storybook<br/>Визуальная разработка"]
+        K["📸 UI Tests<br/>Скриншот-тесты"]
+    end
+    
+    subgraph "Playwright Utils"
+        L["📄 Page Objects<br/>HomePage, GeneratePage"]
+        M["🎭 Actions<br/>Высокоуровневые действия"]
+        N["🎭 Mocker<br/>API мокирование"]
+    end
+    
+    %% Стили с контрастными цветами
+    classDef mainApp fill:#1976d2,stroke:#000,stroke-width:2px,color:#fff
+    classDef uiKit fill:#388e3c,stroke:#000,stroke-width:2px,color:#fff
+    classDef playwright fill:#f57c00,stroke:#000,stroke-width:2px,color:#fff
+    classDef components fill:#7b1fa2,stroke:#000,stroke-width:2px,color:#fff
+    
+    class A mainApp
+    class B,I,J,K uiKit
+    class C,L,M,N playwright
+    class D,E,F,G,H components
 ```
 
 **Ключевые особенности архитектуры:**
@@ -77,24 +87,36 @@ graph TB
 - **Изоляция проблем** - быстрая локализация багов
 
 ```mermaid
+%%{init: {'theme':'base', 'themeVariables': { 'fontSize': '18px', 'fontFamily': 'Arial', 'primaryColor': '#ffffff', 'primaryTextColor': '#000000'}}}%%
 graph TD
-    A[Тестовая стратегия] --> B[Интеграционные тесты<br/>Vitest + RTL]
-    A --> C[E2E тесты<br/>Playwright]
-    A --> D[Скриншотные тесты<br/>Playwright]
-    A --> E[UI компоненты<br/>Playwright + Storybook]
-    A --> F[Accessibility<br/>Playwright + axe-core]
+    A["🎯 Тестовая стратегия"] --> B["🔵 Интеграционные тесты<br/>Vitest + RTL"]
+    A --> C["🔴 E2E тесты<br/>Playwright"]
+    A --> D["🟢 Скриншотные тесты<br/>Playwright"]
+    A --> E["🟠 UI компоненты<br/>Playwright + Storybook"]
+    A --> F["🟣 Accessibility<br/>Playwright + axe-core"]
     
-    B --> G[Логика компонентов<br/>Взаимодействие со сторами<br/>Обработка ошибок]
-    C --> H[Критические сценарии<br/>Сквозные пути<br/>Браузерные функции]
-    D --> I[Визуальная регрессия<br/>Ключевые состояния<br/>Области страниц]
-    E --> J[Изолированное тестирование<br/>Все состояния компонентов<br/>Визуальная стабильность]
-    F --> K[WCAG 2.1 AA<br/>Семантическая разметка<br/>Поддержка клавиатуры]
+    B --> G["Логика компонентов<br/>Взаимодействие со сторами<br/>Обработка ошибок"]
+    C --> H["Критические сценарии<br/>Сквозные пути<br/>Браузерные функции"]
+    D --> I["Визуальная регрессия<br/>Ключевые состояния<br/>Области страниц"]
+    E --> J["Изолированное тестирование<br/>Все состояния компонентов<br/>Визуальная стабильность"]
+    F --> K["WCAG 2.1 AA<br/>Семантическая разметка<br/>Поддержка клавиатуры"]
     
-    style B fill:#e1f5fe
-    style C fill:#f3e5f5
-    style D fill:#e8f5e8
-    style E fill:#fff3e0
-    style F fill:#fce4ec
+    %% Стили с контрастными цветами
+    classDef strategy fill:#424242,stroke:#000,stroke-width:2px,color:#fff
+    classDef integration fill:#1976d2,stroke:#000,stroke-width:2px,color:#fff
+    classDef e2e fill:#d81b60,stroke:#000,stroke-width:2px,color:#fff
+    classDef screenshot fill:#388e3c,stroke:#000,stroke-width:2px,color:#fff
+    classDef ui fill:#f57c00,stroke:#000,stroke-width:2px,color:#fff
+    classDef a11y fill:#7b1fa2,stroke:#000,stroke-width:2px,color:#fff
+    classDef details fill:#616161,stroke:#000,stroke-width:2px,color:#fff
+    
+    class A strategy
+    class B integration
+    class C e2e
+    class D screenshot
+    class E ui
+    class F a11y
+    class G,H,I,J,K details
 ```
 
 **Принцип выбора типа теста:**
@@ -188,104 +210,83 @@ test('TC-HP-001: Успешная загрузка и обработка CSV ф�
 **⚠️ Примечание:** Диаграмма показывает основные группы тестов. В реальном проекте также выполняются A11Y тесты компонентов (входят в общую сумму 66 тестов Vitest), что объясняет разницу в цифрах диаграммы и общего итога.
 
 ```mermaid
-%%{init: {'theme':'base', 'themeVariables': { 'fontSize': '16px', 'fontFamily': 'Arial', 'primaryColor': '#ffffff', 'primaryTextColor': '#000000'}}}%%
-graph LR
-    subgraph "Home Page - 13 тест-кейсов"
-        HP1["TC-HP-001: E2E кнопка загрузки"]
-        HP2["TC-HP-002: E2E drag & drop"]
-        HP3["TC-HP-003: INT неверный формат"]
-        HP4["TC-HP-004: INT кнопка неактивна"]
-        HP5["TC-HP-005: INT серверная ошибка"]
-        HP6["TC-HP-006: INT сброс файла"]
-        HP7["TC-HP-007-013: SCREENSHOT 7 состояний"]
+%%{init: {'theme':'base', 'themeVariables': { 'fontSize': '18px', 'fontFamily': 'Arial', 'primaryColor': '#ffffff', 'primaryTextColor': '#000000'}}}%%
+graph TD
+    subgraph "🏠 Home Page - 13 тест-кейсов"
+        HP1["🔴 TC-HP-001: E2E кнопка загрузки"]
+        HP2["🔴 TC-HP-002: E2E drag & drop"]
+        HP3["🔵 TC-HP-003: INT неверный формат"]
+        HP4["🔵 TC-HP-004: INT кнопка неактивна"]
+        HP5["🔵 TC-HP-005: INT серверная ошибка"]
+        HP6["🔵 TC-HP-006: INT сброс файла"]
+        HP7["🟢 TC-HP-007-013: SCREENSHOT 7 состояний"]
     end
     
-    subgraph "Generate Page - 6 тест-кейсов"
-        GP1["TC-GP-001: E2E успешная генерация"]
-        GP2["TC-GP-002: INT ошибка генерации"]
-        GP3["TC-GP-003-006: SCREENSHOT 4 состояния"]
+    subgraph "📄 Generate Page - 6 тест-кейсов"
+        GP1["🔴 TC-GP-001: E2E успешная генерация"]
+        GP2["🔵 TC-GP-002: INT ошибка генерации"]
+        GP3["🟢 TC-GP-003-006: SCREENSHOT 4 состояния"]
     end
     
-    subgraph "History Page - 10 тест-кейсов"
-        HY1["TC-HY-001: INT список записей"]
-        HY2["TC-HY-002: INT модальное окно"]
-        HY3["TC-HY-003: INT удаление записи"]
-        HY4["TC-HY-004: INT очистка истории"]
-        HY5["TC-HY-005-007: INT логика"]
-        HY6["TC-HY-008-010: SCREENSHOT состояния"]
+    subgraph "📋 History Page - 10 тест-кейсов"
+        HY1["🔵 TC-HY-001: INT список записей"]
+        HY2["🔵 TC-HY-002: INT модальное окно"]
+        HY3["🔵 TC-HY-003: INT удаление записи"]
+        HY4["🔵 TC-HY-004: INT очистка истории"]
+        HY5["🔵 TC-HY-005-007: INT логика"]
+        HY6["🟢 TC-HY-008-010: SCREENSHOT состояния"]
     end
     
-    subgraph "UI Components - 28 тестов"
-        UI1["Button: 8 состояний"]
-        UI2["Typography: 9 состояний"]
-        UI3["Modal: 3 состояния"]
-        UI4["HighlightCard: 2 состояния"]
-        UI5["FileStatus: 2 состояния"]
-        UI6["Loader: 3 состояния"]
-        UI7["HistoryItem: 2 состояния"]
-        UI8["Icons: 2 состояния"]
+    subgraph "🎨 UI Components - 28 тестов"
+        UI1["🟠 Button: 8 состояний"]
+        UI2["🟠 Typography: 9 состояний"]
+        UI3["🟠 Modal: 3 состояния"]
+        UI4["🟠 HighlightCard: 2 состояния"]
+        UI5["🟠 FileStatus: 2 состояния"]
+        UI6["🟠 Loader: 3 состояния"]
+        UI7["🟠 HistoryItem: 2 состояния"]
+        UI8["🟠 Icons: 2 состояния"]
     end
     
-    subgraph "Accessibility - 4 теста"
-        A1["TC-A11Y-001: Home A11Y"]
-        A2["TC-A11Y-002: Generate A11Y"]
-        A3["TC-A11Y-003: History A11Y"]
-        A4["TC-A11Y-004: Components A11Y"]
+    subgraph "♿ Accessibility - 4 теста"
+        A1["🟣 TC-A11Y-001: Home A11Y"]
+        A2["🟣 TC-A11Y-002: Generate A11Y"]
+        A3["🟣 TC-A11Y-003: History A11Y"]
+        A4["🟣 TC-A11Y-004: Components A11Y"]
     end
     
-    subgraph "Юнит-тесты - 39 тестов"
-        UT1["API: analysis.ts - 3 теста"]
-        UT2["API: report.ts - 5 тестов"]
-        UT3["Utils: formatDate.ts - 6 тестов"]
-        UT4["Utils: persist.ts - 5 тестов"]
-        UT5["Utils: storage.ts - 8 тестов"]
-        UT6["Utils: analysis.ts - 18 тестов"]
+    subgraph "⚡ Юнит-тесты - 39 тестов"
+        UT1["⚫ API: analysis.ts - 3 теста"]
+        UT2["⚫ API: report.ts - 5 тестов"]
+        UT3["⚫ Utils: formatDate.ts - 6 тестов"]
+        UT4["⚫ Utils: persist.ts - 5 тестов"]
+        UT5["⚫ Utils: storage.ts - 8 тестов"]
+        UT6["⚫ Utils: analysis.ts - 18 тестов"]
     end
 
     %% Стили с контрастными цветами
-    style HP1 fill:#d81b60,stroke:#000,stroke-width:2px,color:#fff
-    style HP2 fill:#d81b60,stroke:#000,stroke-width:2px,color:#fff
-    style GP1 fill:#d81b60,stroke:#000,stroke-width:2px,color:#fff
-    style HP3 fill:#1976d2,stroke:#000,stroke-width:2px,color:#fff
-    style HP4 fill:#1976d2,stroke:#000,stroke-width:2px,color:#fff
-    style HP5 fill:#1976d2,stroke:#000,stroke-width:2px,color:#fff
-    style HP6 fill:#1976d2,stroke:#000,stroke-width:2px,color:#fff
-    style GP2 fill:#1976d2,stroke:#000,stroke-width:2px,color:#fff
-    style HY1 fill:#1976d2,stroke:#000,stroke-width:2px,color:#fff
-    style HY2 fill:#1976d2,stroke:#000,stroke-width:2px,color:#fff
-    style HY3 fill:#1976d2,stroke:#000,stroke-width:2px,color:#fff
-    style HY4 fill:#1976d2,stroke:#000,stroke-width:2px,color:#fff
-    style HY5 fill:#1976d2,stroke:#000,stroke-width:2px,color:#fff
-    style HP7 fill:#388e3c,stroke:#000,stroke-width:2px,color:#fff
-    style GP3 fill:#388e3c,stroke:#000,stroke-width:2px,color:#fff
-    style HY6 fill:#388e3c,stroke:#000,stroke-width:2px,color:#fff
-    style UI1 fill:#f57c00,stroke:#000,stroke-width:2px,color:#fff
-    style UI2 fill:#f57c00,stroke:#000,stroke-width:2px,color:#fff
-    style UI3 fill:#f57c00,stroke:#000,stroke-width:2px,color:#fff
-    style UI4 fill:#f57c00,stroke:#000,stroke-width:2px,color:#fff
-    style UI5 fill:#f57c00,stroke:#000,stroke-width:2px,color:#fff
-    style UI6 fill:#f57c00,stroke:#000,stroke-width:2px,color:#fff
-    style UI7 fill:#f57c00,stroke:#000,stroke-width:2px,color:#fff
-    style UI8 fill:#f57c00,stroke:#000,stroke-width:2px,color:#fff
-    style A1 fill:#7b1fa2,stroke:#000,stroke-width:2px,color:#fff
-    style A2 fill:#7b1fa2,stroke:#000,stroke-width:2px,color:#fff
-    style A3 fill:#7b1fa2,stroke:#000,stroke-width:2px,color:#fff
-    style A4 fill:#7b1fa2,stroke:#000,stroke-width:2px,color:#fff
-    style UT1 fill:#424242,stroke:#000,stroke-width:2px,color:#fff
-    style UT2 fill:#424242,stroke:#000,stroke-width:2px,color:#fff
-    style UT3 fill:#424242,stroke:#000,stroke-width:2px,color:#fff
-    style UT4 fill:#424242,stroke:#000,stroke-width:2px,color:#fff
-    style UT5 fill:#424242,stroke:#000,stroke-width:2px,color:#fff
-    style UT6 fill:#424242,stroke:#000,stroke-width:2px,color:#fff
+    classDef e2e fill:#d81b60,stroke:#000,stroke-width:2px,color:#fff
+    classDef integration fill:#1976d2,stroke:#000,stroke-width:2px,color:#fff
+    classDef screenshot fill:#388e3c,stroke:#000,stroke-width:2px,color:#fff
+    classDef ui fill:#f57c00,stroke:#000,stroke-width:2px,color:#fff
+    classDef a11y fill:#7b1fa2,stroke:#000,stroke-width:2px,color:#fff
+    classDef unit fill:#424242,stroke:#000,stroke-width:2px,color:#fff
+    
+    class HP1,HP2,GP1 e2e
+    class HP3,HP4,HP5,HP6,GP2,HY1,HY2,HY3,HY4,HY5 integration
+    class HP7,GP3,HY6 screenshot
+    class UI1,UI2,UI3,UI4,UI5,UI6,UI7,UI8 ui
+    class A1,A2,A3,A4 a11y
+    class UT1,UT2,UT3,UT4,UT5,UT6 unit
 ```
 
 **Легенда:**
-- 🔴 E2E тесты - критические сценарии (розовый)
-- 🔵 Интеграционные тесты - основная логика (синий)
-- 🟢 Скриншотные тесты - визуальная регрессия (зеленый)
-- 🟠 UI компоненты - изолированное тестирование (оранжевый)
-- 🟣 Accessibility - проверка доступности (фиолетовый)
-- ⚫ Юнит-тесты - тестирование в изоляции (серый)
+- 🔴 E2E тесты - критические сценарии (розовый цвет)
+- 🔵 Интеграционные тесты - основная логика (синий цвет)
+- 🟢 Скриншотные тесты - визуальная регрессия (зеленый цвет)
+- 🟠 UI компоненты - изолированное тестирование (оранжевый цвет)
+- 🟣 Accessibility - проверка доступности (фиолетовый цвет)
+- ⚫ Юнит-тесты - тестирование в изоляции (серый цвет)
 
 ## 4. Интеграционные тесты - основа функциональности
 
@@ -416,46 +417,55 @@ E2E тесты в нашем проекте используются исклю�
 E2E тесты построены на принципах максимального переиспользования и читаемости:
 
 ```mermaid
+%%{init: {'theme':'base', 'themeVariables': { 'fontSize': '18px', 'fontFamily': 'Arial', 'primaryColor': '#ffffff', 'primaryTextColor': '#000000'}}}%%
 graph TD
     subgraph "Documentation-First подход"
-        A[Сценарии<br/>docs/tests/scenarios/] --> B[Тест-кейсы<br/>docs/tests/test-cases/]
-        B --> C[Код тестов<br/>с соответствующими ID]
+        A["📝 Сценарии<br/>docs/tests/scenarios/"] --> B["📋 Тест-кейсы<br/>docs/tests/test-cases/"]
+        B --> C["💻 Код тестов<br/>с соответствующими ID"]
     end
     
     subgraph "Структура тестов"
-        D[tests/functional/<br/>E2E тесты] --> E[Page Objects<br/>packages/playwright/src/page-objects/]
-        D --> F[Actions<br/>packages/playwright/src/actions/]
-        D --> G[Mocker<br/>packages/playwright/src/mocker/]
+        D["🔴 tests/functional/<br/>E2E тесты"] --> E["📄 Page Objects<br/>packages/playwright/src/page-objects/"]
+        D --> F["🎭 Actions<br/>packages/playwright/src/actions/"]
+        D --> G["🎭 Mocker<br/>packages/playwright/src/mocker/"]
         
-        H[tests/screenshots/<br/>Скриншотные тесты] --> E
+        H["🟢 tests/screenshots/<br/>Скриншотные тесты"] --> E
         H --> F
         H --> G
         
-        I[tests/accessibility/<br/>A11Y тесты] --> E
+        I["🟣 tests/accessibility/<br/>A11Y тесты"] --> E
         I --> F
-        I --> J[axe-core<br/>WCAG проверки]
+        I --> J["♿ axe-core<br/>WCAG проверки"]
         
-        K[src/pages/*/tests/<br/>Интеграционные тесты] --> L[RTL<br/>React Testing Library]
-        K --> M[Vitest<br/>Тестовый раннер]
+        K["🔵 src/pages/*/tests/<br/>Интеграционные тесты"] --> L["⚛️ RTL<br/>React Testing Library"]
+        K --> M["⚡ Vitest<br/>Тестовый раннер"]
         
-        N[packages/ui-kit/src/components/*/tests/<br/>UI компоненты] --> O[Playwright + Storybook]
-        N --> P[Изолированные скриншоты]
+        N["🟠 packages/ui-kit/src/components/*/tests/<br/>UI компоненты"] --> O["🎨 Playwright + Storybook"]
+        N --> P["📸 Изолированные скриншоты"]
     end
     
     subgraph "Фикстуры и утилиты"
-        Q[Кастомные фикстуры<br/>pages, actions, mocker] --> R[Чистота тестов<br/>localStorage, время]
-        Q --> S[Мокирование API<br/>Независимость от бэкенда]
-        Q --> T[Переиспользуемость<br/>Единый API для тестов]
+        Q["⚙️ Кастомные фикстуры<br/>pages, actions, mocker"] --> R["🧹 Чистота тестов<br/>localStorage, время"]
+        Q --> S["🌐 Мокирование API<br/>Независимость от бэкенда"]
+        Q --> T["🔄 Переиспользуемость<br/>Единый API для тестов"]
     end
     
-    style A fill:#e3f2fd
-    style B fill:#e3f2fd
-    style C fill:#e3f2fd
-    style D fill:#f3e5f5
-    style H fill:#e8f5e8
-    style I fill:#fce4ec
-    style K fill:#e1f5fe
-    style N fill:#fff3e0
+    %% Стили с контрастными цветами
+    classDef docs fill:#424242,stroke:#000,stroke-width:2px,color:#fff
+    classDef e2e fill:#d81b60,stroke:#000,stroke-width:2px,color:#fff
+    classDef screenshot fill:#388e3c,stroke:#000,stroke-width:2px,color:#fff
+    classDef a11y fill:#7b1fa2,stroke:#000,stroke-width:2px,color:#fff
+    classDef integration fill:#1976d2,stroke:#000,stroke-width:2px,color:#fff
+    classDef ui fill:#f57c00,stroke:#000,stroke-width:2px,color:#fff
+    classDef utils fill:#616161,stroke:#000,stroke-width:2px,color:#fff
+    
+    class A,B,C docs
+    class D,E,F,G e2e
+    class H screenshot
+    class I,J a11y
+    class K,L,M integration
+    class N,O,P ui
+    class Q,R,S,T utils
 ```
 
 ### Кастомные фикстуры
@@ -1103,12 +1113,13 @@ npm run test:flaky "TC-HP-001" 10  # конкретный тест 10 раз - 5
 ### Распределение по типам
 
 ```mermaid
-pie title Распределение тестов по типам
-    "UI компоненты" : 28
-    "Юнит+Интеграционные+A11Y" : 60
-    "Скриншотные" : 14
-    "Accessibility страниц" : 4
-    "E2E функциональные" : 3
+%%{init: {'theme':'base', 'themeVariables': { 'fontSize': '18px', 'fontFamily': 'Arial', 'primaryColor': '#ffffff', 'primaryTextColor': '#000000'}}}%%
+pie title Распределение тестов по типам (115 тестов)
+    "🟠 UI компоненты" : 28
+    "🔵 Юнит+Интеграционные+A11Y" : 60
+    "🟢 Скриншотные" : 14
+    "🟣 Accessibility страниц" : 4
+    "🔴 E2E функциональные" : 3
 ```
 
 ## 12. Заключение и выводы
