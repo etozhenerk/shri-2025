@@ -1093,13 +1093,13 @@ npm run test:flaky "TC-HP-001" 10  # конкретный тест 10 раз - 5
 ### Распределение по типам
 
 ```mermaid
-%%{init: {'theme':'base', 'themeVariables': { 'fontSize': '18px', 'fontFamily': 'Arial'}}}%%
+%%{init: {'theme':'default', 'themeVariables': { 'fontSize': '18px', 'fontFamily': 'Arial', 'primaryColor': '#ffffff', 'primaryTextColor': '#000000', 'primaryBorderColor': '#000000', 'lineColor': '#000000', 'secondaryColor': '#ffffff', 'tertiaryColor': '#ffffff'}}}%%
 pie title Распределение тестов по типам (115 тестов)
-    "UI компоненты" : 28
-    "Юнит+Интеграционные+A11Y" : 60
-    "Скриншотные" : 14
-    "Accessibility страниц" : 4
-    "E2E функциональные" : 3
+    "UI компоненты (28)" : 28
+    "Юнит+Интеграционные+A11Y (60)" : 60
+    "Скриншотные (14)" : 14
+    "Accessibility страниц (4)" : 4
+    "E2E функциональные (3)" : 3
 ```
 
 ## 12. Заключение и выводы
