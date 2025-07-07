@@ -188,96 +188,104 @@ test('TC-HP-001: Успешная загрузка и обработка CSV ф�
 **⚠️ Примечание:** Диаграмма показывает основные группы тестов. В реальном проекте также выполняются A11Y тесты компонентов (входят в общую сумму 66 тестов Vitest), что объясняет разницу в цифрах диаграммы и общего итога.
 
 ```mermaid
+%%{init: {'theme':'base', 'themeVariables': { 'fontSize': '16px', 'fontFamily': 'Arial', 'primaryColor': '#ffffff', 'primaryTextColor': '#000000'}}}%%
 graph LR
     subgraph "Home Page - 13 тест-кейсов"
-        HP1[TC-HP-001: E2E кнопка загрузки]
-        HP2[TC-HP-002: E2E drag & drop]
-        HP3[TC-HP-003: INT неверный формат]
-        HP4[TC-HP-004: INT кнопка неактивна]
-        HP5[TC-HP-005: INT серверная ошибка]
-        HP6[TC-HP-006: INT сброс файла]
-        HP7[TC-HP-007-013: SCREENSHOT 7 состояний]
+        HP1["TC-HP-001: E2E кнопка загрузки"]
+        HP2["TC-HP-002: E2E drag & drop"]
+        HP3["TC-HP-003: INT неверный формат"]
+        HP4["TC-HP-004: INT кнопка неактивна"]
+        HP5["TC-HP-005: INT серверная ошибка"]
+        HP6["TC-HP-006: INT сброс файла"]
+        HP7["TC-HP-007-013: SCREENSHOT 7 состояний"]
     end
     
     subgraph "Generate Page - 6 тест-кейсов"
-        GP1[TC-GP-001: E2E успешная генерация]
-        GP2[TC-GP-002: INT ошибка генерации]
-        GP3[TC-GP-003-006: SCREENSHOT 4 состояния]
+        GP1["TC-GP-001: E2E успешная генерация"]
+        GP2["TC-GP-002: INT ошибка генерации"]
+        GP3["TC-GP-003-006: SCREENSHOT 4 состояния"]
     end
     
     subgraph "History Page - 10 тест-кейсов"
-        HY1[TC-HY-001: INT список записей]
-        HY2[TC-HY-002: INT модальное окно]
-        HY3[TC-HY-003: INT удаление записи]
-        HY4[TC-HY-004: INT очистка истории]
-        HY5[TC-HY-005-007: INT логика]
-        HY6[TC-HY-008-010: SCREENSHOT состояния]
+        HY1["TC-HY-001: INT список записей"]
+        HY2["TC-HY-002: INT модальное окно"]
+        HY3["TC-HY-003: INT удаление записи"]
+        HY4["TC-HY-004: INT очистка истории"]
+        HY5["TC-HY-005-007: INT логика"]
+        HY6["TC-HY-008-010: SCREENSHOT состояния"]
     end
     
     subgraph "UI Components - 28 тестов"
-        UI1[Button: 8 состояний]
-        UI2[Typography: 9 состояний]
-        UI3[Modal: 3 состояния]
-        UI4[HighlightCard: 2 состояния]
-        UI5[FileStatus: 2 состояния]
-        UI6[Loader: 3 состояния]
-        UI7[HistoryItem: 2 состояния]
-        UI8[Icons: 2 состояния]
+        UI1["Button: 8 состояний"]
+        UI2["Typography: 9 состояний"]
+        UI3["Modal: 3 состояния"]
+        UI4["HighlightCard: 2 состояния"]
+        UI5["FileStatus: 2 состояния"]
+        UI6["Loader: 3 состояния"]
+        UI7["HistoryItem: 2 состояния"]
+        UI8["Icons: 2 состояния"]
     end
     
     subgraph "Accessibility - 4 теста"
-        A1[TC-A11Y-001: Home A11Y]
-        A2[TC-A11Y-002: Generate A11Y]
-        A3[TC-A11Y-003: History A11Y]
-        A4[TC-A11Y-004: Components A11Y]
+        A1["TC-A11Y-001: Home A11Y"]
+        A2["TC-A11Y-002: Generate A11Y"]
+        A3["TC-A11Y-003: History A11Y"]
+        A4["TC-A11Y-004: Components A11Y"]
     end
     
     subgraph "Юнит-тесты - 39 тестов"
-        UT1[API: analysis.ts - 3 теста]
-        UT2[API: report.ts - 5 тестов]
-        UT3[Utils: formatDate.ts - 6 тестов]
-        UT4[Utils: persist.ts - 5 тестов]
-        UT5[Utils: storage.ts - 8 тестов]
-        UT6[Utils: analysis.ts - 18 тестов]
+        UT1["API: analysis.ts - 3 теста"]
+        UT2["API: report.ts - 5 тестов"]
+        UT3["Utils: formatDate.ts - 6 тестов"]
+        UT4["Utils: persist.ts - 5 тестов"]
+        UT5["Utils: storage.ts - 8 тестов"]
+        UT6["Utils: analysis.ts - 18 тестов"]
     end
-```
-    
-    style HP1 fill:#f3e5f5
-    style HP2 fill:#f3e5f5
-    style GP1 fill:#f3e5f5
-    style HP3 fill:#e1f5fe
-    style HP4 fill:#e1f5fe
-    style HP5 fill:#e1f5fe
-    style HP6 fill:#e1f5fe
-    style GP2 fill:#e1f5fe
-    style HY1 fill:#e1f5fe
-    style HY2 fill:#e1f5fe
-    style HY3 fill:#e1f5fe
-    style HY4 fill:#e1f5fe
-    style HY5 fill:#e1f5fe
-    style HP7 fill:#e8f5e8
-    style GP3 fill:#e8f5e8
-    style HY6 fill:#e8f5e8
-    style UI1 fill:#fff3e0
-    style UI2 fill:#fff3e0
-    style UI3 fill:#fff3e0
-    style UI4 fill:#fff3e0
-    style UI5 fill:#fff3e0
-    style UI6 fill:#fff3e0
-    style UI7 fill:#fff3e0
-    style UI8 fill:#fff3e0
-    style A1 fill:#fce4ec
-    style A2 fill:#fce4ec
-    style A3 fill:#fce4ec
-    style A4 fill:#fce4ec
+
+    %% Стили с контрастными цветами
+    style HP1 fill:#d81b60,stroke:#000,stroke-width:2px,color:#fff
+    style HP2 fill:#d81b60,stroke:#000,stroke-width:2px,color:#fff
+    style GP1 fill:#d81b60,stroke:#000,stroke-width:2px,color:#fff
+    style HP3 fill:#1976d2,stroke:#000,stroke-width:2px,color:#fff
+    style HP4 fill:#1976d2,stroke:#000,stroke-width:2px,color:#fff
+    style HP5 fill:#1976d2,stroke:#000,stroke-width:2px,color:#fff
+    style HP6 fill:#1976d2,stroke:#000,stroke-width:2px,color:#fff
+    style GP2 fill:#1976d2,stroke:#000,stroke-width:2px,color:#fff
+    style HY1 fill:#1976d2,stroke:#000,stroke-width:2px,color:#fff
+    style HY2 fill:#1976d2,stroke:#000,stroke-width:2px,color:#fff
+    style HY3 fill:#1976d2,stroke:#000,stroke-width:2px,color:#fff
+    style HY4 fill:#1976d2,stroke:#000,stroke-width:2px,color:#fff
+    style HY5 fill:#1976d2,stroke:#000,stroke-width:2px,color:#fff
+    style HP7 fill:#388e3c,stroke:#000,stroke-width:2px,color:#fff
+    style GP3 fill:#388e3c,stroke:#000,stroke-width:2px,color:#fff
+    style HY6 fill:#388e3c,stroke:#000,stroke-width:2px,color:#fff
+    style UI1 fill:#f57c00,stroke:#000,stroke-width:2px,color:#fff
+    style UI2 fill:#f57c00,stroke:#000,stroke-width:2px,color:#fff
+    style UI3 fill:#f57c00,stroke:#000,stroke-width:2px,color:#fff
+    style UI4 fill:#f57c00,stroke:#000,stroke-width:2px,color:#fff
+    style UI5 fill:#f57c00,stroke:#000,stroke-width:2px,color:#fff
+    style UI6 fill:#f57c00,stroke:#000,stroke-width:2px,color:#fff
+    style UI7 fill:#f57c00,stroke:#000,stroke-width:2px,color:#fff
+    style UI8 fill:#f57c00,stroke:#000,stroke-width:2px,color:#fff
+    style A1 fill:#7b1fa2,stroke:#000,stroke-width:2px,color:#fff
+    style A2 fill:#7b1fa2,stroke:#000,stroke-width:2px,color:#fff
+    style A3 fill:#7b1fa2,stroke:#000,stroke-width:2px,color:#fff
+    style A4 fill:#7b1fa2,stroke:#000,stroke-width:2px,color:#fff
+    style UT1 fill:#424242,stroke:#000,stroke-width:2px,color:#fff
+    style UT2 fill:#424242,stroke:#000,stroke-width:2px,color:#fff
+    style UT3 fill:#424242,stroke:#000,stroke-width:2px,color:#fff
+    style UT4 fill:#424242,stroke:#000,stroke-width:2px,color:#fff
+    style UT5 fill:#424242,stroke:#000,stroke-width:2px,color:#fff
+    style UT6 fill:#424242,stroke:#000,stroke-width:2px,color:#fff
 ```
 
 **Легенда:**
-- 🟪 E2E тесты - критические сценарии
-- 🟦 Интеграционные тесты - основная логика
-- 🟩 Скриншотные тесты - визуальная регрессия
-- 🟨 UI компоненты - изолированное тестирование
-- 🟥 Accessibility - проверка доступности
+- 🔴 E2E тесты - критические сценарии (розовый)
+- 🔵 Интеграционные тесты - основная логика (синий)
+- 🟢 Скриншотные тесты - визуальная регрессия (зеленый)
+- 🟠 UI компоненты - изолированное тестирование (оранжевый)
+- 🟣 Accessibility - проверка доступности (фиолетовый)
+- ⚫ Юнит-тесты - тестирование в изоляции (серый)
 
 ## 4. Интеграционные тесты - основа функциональности
 
