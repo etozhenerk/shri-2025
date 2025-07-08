@@ -6,14 +6,14 @@ test.beforeEach(async ({ page }) => {
     await page.goto('/generate');
 });
 
-test('TC-GP-003: Скриншот состояния страницы генерации по умолчанию', async ({ pages }) => {
+test('TC-GP-003: Скриншот состояния страницы "Генерация" по умолчанию', async ({ pages }) => {
     await test.step('Шаг 1: Сделать и сравнить скриншот страницы', async () => {
         await expect(pages.generate.root).toBeVisible();
         await expect(pages.generate.root).toHaveScreenshot('generate-page.png', TEST_OPTIONS);
     });
 });
 
-test('TC-GP-004: Скриншот состояния страницы генерации в процессе генерации', async ({ pages, mocker }) => {
+test('TC-GP-004: Скриншот состояния страницы "Генерация" в процессе генерации', async ({ pages, mocker }) => {
     await test.step('Шаг 1: Нажать на кнопку "Начать генерацию"', async () => {
         // Мокируем запрос с большой задержкой чтобы поймать состояние загрузки
         await mocker.mock('**/report*', 'col1,col2\\nval1,val2', {
@@ -31,7 +31,7 @@ test('TC-GP-004: Скриншот состояния страницы генер
     });
 });
 
-test('TC-GP-005: Скриншот состояния страницы генерации после успешной генерации', async ({ pages, mocker }) => {
+test('TC-GP-005: Скриншот состояния страницы "Генерация" после успешной генерации', async ({ pages, mocker }) => {
     await test.step('Шаг 1: Нажать на кнопку "Начать генерацию"', async () => {
         await mocker.mock('**/report*', 'col1,col2\\nval1,val2', {
             status: 200,
@@ -54,7 +54,7 @@ test('TC-GP-005: Скриншот состояния страницы генер
     });
 });
 
-test('TC-GP-006: Скриншот состояния страницы генерации при ошибке', async ({ pages, mocker }) => {
+test('TC-GP-006: Скриншот состояния страницы "Генерация" при ошибке', async ({ pages, mocker }) => {
     await test.step('Шаг 1: Нажать на кнопку "Начать генерацию"', async () => {
         await mocker.mock('**/report*', { error: 'Произошла серьезная ошибка' }, {
             status: 500,

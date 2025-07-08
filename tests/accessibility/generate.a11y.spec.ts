@@ -1,6 +1,6 @@
 import { test, expect } from '@shri/playwright';
 
-test('TC-A11Y-GENERATE-01: Страница генерации должна быть доступна', async ({ actions, makeA11yScan }) => {
+test('TC-A11Y-GP-001: Страница генерации должна быть доступна', async ({ actions, makeA11yScan }) => {
     // Arrange
     await actions.generate.goto();
 
