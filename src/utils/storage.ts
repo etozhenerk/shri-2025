@@ -5,7 +5,12 @@ import { STORAGE_KEY } from './consts';
 export const getHistory = (): HistoryItemType[] => {
     try {
         const history = localStorage.getItem(STORAGE_KEY);
-        return history ? JSON.parse(history) : [];
+        if (!history) {
+            return [];
+        }
+
+        const parsed = JSON.parse(history);
+        return Array.isArray(parsed) ? parsed : [];
     } catch {
         return [];
     }
